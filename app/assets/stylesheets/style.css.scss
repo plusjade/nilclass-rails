@@ -1,0 +1,54 @@
+/* http://www.colourlovers.com/palette/74212/Scrimshaw */
+/* http://www.colourlovers.com/palette/3304711/Moja_prva */
+/* teal 1C9EDB */
+/* green: hsla(100, 52%, 41%, 1) ;*/
+html {
+  margin: 0;
+  padding: 0;
+  height:100%;
+}
+body {
+  overflow: hidden;
+  margin: 0;
+  padding:0;
+  height:100%;
+  font-size: 14px;
+  font-family: "Helvetica Neue", Helvetica;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+}
+pre {
+  font-size: 18px;
+}
+a {
+  &:link, &:visited {
+    color: #000;
+    text-decoration: none;
+  }
+  &:hover {
+    color: #666;
+  }
+}
+svg {
+  overflow: visible;
+}
+kbd {
+  padding: 0.1em 0.6em;
+  border: 1px solid #ccc;
+  font-size: 11px;
+  font-family: Arial,Helvetica,sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+  -moz-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+  -webkit-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+  box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2),0 0 0 2px #ffffff inset;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 0 0.1em;
+  text-shadow: 0 1px 0 #fff;
+  line-height: 1.4;
+  white-space: nowrap;
+}

@@ -1,0 +1,27 @@
+#mce-EMAIL {
+  width: 200px;
+  border:1px solid #ccc;
+}
+#signup-form {
+  font-family: inherit;
+  position: absolute;
+  top: 7px;
+  right: 130px;
+  label {
+    color: #999;
+    font-size: 14px;
+  }
+  input {
+    padding: 0 8px;
+    line-height: 22px;
+  }
+}
+#mc-embedded-subscribe {
+  background-color: #F22602;
+  color: #FFF;
+  border: 0 !important;
+  cursor: pointer;
+  &:hover {
+    background-color: #1C9EDB;
+  }
+}
