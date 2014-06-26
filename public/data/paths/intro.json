@@ -1,0 +1,114 @@
+{
+    "diagram" : "world",
+    "steps": [
+        {
+            "url" : "internet",
+            "name" : "web-page",
+            "title" : "For the Love of the Web.",
+            "focus" : "You"
+        }
+        ,
+        {
+            "url" : "internet",
+            "name" : "web-browser",
+            "title" : "Accessing Web Pages.",
+            "focus" : "Laptop",
+            "focusPath" : ["You", "Laptop"]
+        }
+        ,
+        {
+            "url" : "internet",
+            "name" : "Internet",
+            "title" : "The Internet.",
+            "focus" : "Internet",
+            "focusPath" : ["You", "Laptop", "Internet"]
+        }
+        ,
+        {
+            "url" : "internet",
+            "name" : "static-server",
+            "title" : "The Server.",
+            "focus" : "Server",
+            "focusPath" : ["You", "Laptop", "Internet", "Server"]
+        }
+
+        ,
+        {
+            "url" : "static-server",
+            "name" : "web-server",
+            "title" : "The Web Server.",
+            "focus" : "Web Server",
+            "focusPath" : ["You", "Laptop", "Internet", "Server", "Web Server", "Filesystem"]
+        }
+
+        ,
+        {
+            "url" : "static-server",
+            "name" : "filesystem",
+            "title" : "Videos, Images, and Other Goodies.",
+            "focus" : "Filesystem",
+            "focusPath" : ["You", "Laptop", "Internet", "Server", "Web Server", "Filesystem"]
+        }
+
+        ,
+        {
+            "url" : "web-application",
+            "name" : "web-application",
+            "title" : "The Web Application.",
+            "focus" : "Application",
+            "focusPath" : ["You", "Laptop", "Internet", "Server", "Web Server", "Application", "Filesystem"]
+        }
+
+        ,
+        {
+            "url" : "database",
+            "name" : "database",
+            "title" : "The Database.",
+            "focus" : "Database",
+            "focusPath" : ["You", "Laptop", "Internet", "Server", "Web Server", "Application", "Database"]
+        }
+
+        ,
+        {
+            "url" : "dedicated-database",
+            "name" : "dedicated-database",
+            "title" : "The Database Server.",
+            "focus" : "Database Server",
+            "focusPath" : ["You", "Laptop", "Internet", "Server", "Web Server", "Application", "Database Server"]
+        }
+
+        ,
+        {
+            "url" : "reverse-proxy",
+            "name" : "reverse-proxy",
+            "title" : "Handling More Traffic.",
+            "focus" : "Reverse Proxy",
+            "focusPath" : ["You", "Laptop", "Internet", "Reverse Proxy", "Server"]
+        }
+
+        ,
+        {
+            "url" : "multi-app-architecture",
+            "name" : "multi-app-architecture",
+            "title" : "Adding More Servers.",
+            "focus" : ["Server", "Server (clone 1)", "Server (clone 2)"],
+            "focusPaths" : [
+                ["You", "Laptop", "Internet", "Reverse Proxy", "Server"],
+                ["Server (clone 1)", "Reverse Proxy", "Server (clone 2)"]
+            ]
+        }
+        ,
+        {
+            "url" : "multi-app-architecture",
+            "name" : "multi-app-database",
+            "title" : "Data Integrity.",
+            "focus" : ["Database Server"],
+            "focusPaths" : [
+                ["Server", "Web Server", "Application", "Database Server"],
+                ["Server (clone 1)", "Web Server clone 1", "App clone 1", "Database Server"],
+                ["Server (clone 2)", "Web Server clone 2", "App clone 2", "Database Server"]
+            ]
+        }
+
+    ]
+}

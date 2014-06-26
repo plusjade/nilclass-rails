@@ -1,0 +1,276 @@
+{
+    "steps": [
+        {
+            "url" : "internet",
+            "action" : {
+                "method" : "add",
+                "items" : [
+                    {
+                        "item" : "user",
+                        "icon" : "girl",
+                        "name" : "Anna",
+                        "content" : "This is Anna.",
+                        "connect" : ["Phone"]
+                    }
+                    ,
+                    {
+                        "item" : "user",
+                        "grid" : "bottom",
+                        "connect" : ["Laptop"]
+                    }
+                    ,
+                    {
+                        "item" : "user",
+                        "name" : "Pinky",
+                        "content" : "This is Pinky =D.",
+                        "icon" : "cat",
+                        "grid" : "bottom",
+                        "connect" : ["Tablet"]
+                    }
+                    ,
+                    {
+                        "item" : "tablet",
+                        "grid" : "right",
+                        "connect" : "Internet"
+                    }
+
+                    ,
+                    {
+                        "item": "laptop",
+                        "grid" : "top",
+                        "connect" : "Internet"
+                    }
+                    ,
+
+                    {
+                        "item" : "iphone",
+                        "grid" : "top",
+                        "connect" : "Internet"
+                    }
+                    ,
+                    {
+                        "item": "internet",
+                        "grid" : "bottom-right"
+                    }
+                    ,
+                    {
+                        "item": "server",
+                        "grid" : "right",
+                        "connect" : ["Internet"]
+                    }
+                ]
+            }
+        }
+
+        ,
+        {
+            "url" : "static-server",
+            "action" : {
+                "method" : "add",
+                "from" : "Server",
+                "items" : [
+                    {
+                        "item": "web-server",
+                        "grid" : "bottom-right",
+                        "connect" : ["Server", "Filesystem"]
+                    }
+                    ,
+                    {
+                        "item": "filesystem",
+                        "grid" : "right",
+                        "connect" : ["HTML", "Image", "Video"]
+                    }
+                    ,
+                    {
+                        "item" : "icon",
+                        "name" : "HTML",
+                        "icon" : "document-html",
+                        "grid" : "top-right"
+                    }
+                    ,
+                    {
+                        "item" : "icon",
+                        "name" : "Image",
+                        "icon" : "image",
+                        "grid" : "bottom"
+                    }
+                    ,
+                    {
+                        "item" : "icon",
+                        "name" : "Video",
+                        "icon" : "video-2",
+                        "grid" : "bottom"
+                    }
+                ]
+            }
+        }
+
+        ,
+        {
+            "url" : "web-application",
+            "actions" : [
+                {
+                    "method" : "insert",
+                    "from" : "Web Server",
+                    "items" : [
+                        {
+                            "item": "application",
+                            "grid" : "right",
+                            "connect" : ["Web Server", "Filesystem"]
+                        }
+                    ]
+                }
+                ,
+                {
+                    "method" : "update",
+                    "items" : [
+                        {
+                            "name" : "Web Server",
+                            "connect" : ["Server"]
+                        }
+                    ]
+                }
+            ]
+        }
+
+        ,
+        {
+            "url" : "database",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "from" : "Application",
+                    "items" : [
+                        {
+                            "item": "database",
+                            "grid" : "top-right",
+                            "connect" : "Application"
+                        }
+                    ]
+                }
+                ,
+                {
+                    "method" : "update",
+                    "items" : [
+                        {
+                            "name" : "Filesystem",
+                            "grid" : "bottom-right"
+                        }
+                    ]
+                }
+            ]
+        }
+
+        ,
+        {
+            "url" : "dedicated-database",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "from" : "Application",
+                    "items" : [
+                        {
+                            "item": "dedicated-database",
+                            "grid" : "top-right 2",
+                            "connect" : "Application"
+                        }
+                    ]
+                }
+                ,
+                {
+                    "method" : "remove",
+                    "items" : [
+                        {
+                            "name": "Database"
+                        }
+                    ]
+                }
+            ]
+        }
+
+        ,
+        {
+            "url" : "reverse-proxy",
+            "action" : {
+                "method" : "insert",
+                "from" : "Internet",
+                "items" : [
+                    {
+                        "item": "reverse-proxy",
+                        "grid" : "right"
+                    }
+                ]
+            }
+        }
+
+        ,
+        {
+            "url" : "multi-app-architecture",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "from" : "Server",
+                    "items" : [
+                        {
+                            "item": "server",
+                            "name" : "Server (clone 1)",
+                            "grid" : "top 2",
+                            "connect" : ["Reverse Proxy", "Web Server clone 1"]
+                        }
+                        ,
+                        {
+                            "item": "web-server",
+                            "name" : "Web Server clone 1",
+                            "grid" : "bottom-right",
+                            "connect" : ["App clone 1"]
+                        }
+                        ,
+                        {
+                            "item": "application",
+                            "name" : "App clone 1",
+                            "grid" : "right",
+                            "connect" : "Database Server"
+                        }
+                    ]
+                }
+                ,
+                {
+                    "method" : "add",
+                    "from" : "Server",
+                    "items" : [
+                        {
+                            "item": "server",
+                            "name" : "Server (clone 2)",
+                            "grid" : "bottom 2",
+                            "connect" : ["Reverse Proxy", "Web Server clone 2"]
+                        }
+                        ,
+                        {
+                            "item": "web-server",
+                            "name" : "Web Server clone 2",
+                            "grid" : "bottom-right",
+                            "connect" : ["App clone 2"]
+                        }
+                        ,
+                        {
+                            "item": "application",
+                            "name" : "App clone 2",
+                            "grid" : "right",
+                            "connect" : "Database Server"
+                        }
+                    ]
+                }
+                ,
+                {
+                    "method" : "update",
+                    "items" : [
+                        {
+                            "name" : "Application",
+                            "grid" : "right 2"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
