@@ -1,0 +1,13 @@
+# Ignore bundle configs
+.bundle
+bin/
+vendor/bundle/
+
+log/
+tmp/
+.sass-cache/
+.rvmrc
+.DS_Store
+*.rdb
+config/mongoid.yml
+features/html_output/output.html
