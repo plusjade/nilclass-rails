@@ -7,7 +7,7 @@ var Display = (function() {
 
         updateNodes(nodes);
 
-        World.page.show(graph.meta('name'));
+        World.page.show(graph.meta('content'));
 
         updateLinks(Plot.links(graph), 'connect');
 

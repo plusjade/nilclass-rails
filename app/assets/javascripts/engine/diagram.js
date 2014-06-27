@@ -82,11 +82,11 @@ var Diagram = function(endpoint) {
         }
         else {
             d3.json(pathEndpoint(), function(pathData) {
-                if(pathData) {
-                    d3.json(dataEndpoint(pathData.diagram), function(data) {
+                if(pathData.course) {
+                    d3.json(dataEndpoint(pathData.course.diagram), function(data) {
                         if(data) {
 
-                            parsePath(pathData);
+                            parsePath(pathData.course);
                             parseSteps(data);
 
                             Paths.forEach(function(path) {
