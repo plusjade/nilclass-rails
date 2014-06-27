@@ -270,6 +270,25 @@
     <div id="world"></div>
 
     <%= javascript_include_tag "application" %>
-    <script><%= yield :page_javascripts %></script>
+    <script>
+      var courses = new Courses([
+          {
+              "name": "How Websites Work.",
+              "url" : "how-websites-work"
+          }
+      ]);
+
+      var course = courses.data()[0];
+      courses.update(course);
+      World.diagram = new Diagram(course.url);
+      World.diagram.getFromQueryString(window.location.pathname, function(graph, index) {
+          Display.update(graph);
+          Navigation.render();
+          World.diagram.steps(function(steps) {
+              Navigation.update(steps, index);
+          })
+      })
+      <%= yield :page_javascripts %>
+    </script>
   </body>
 </html>

@@ -1,15 +1,9 @@
-var Courses = function() {
+var Courses = function(CourseData) {
+    var CourseData = CourseData;
     this.data = function() {
         return CourseData;
     }
     this.update = update;
-
-    var CourseData = [
-        {
-            "name": "How Websites Work.",
-            "url" : "intro"
-        }
-    ]
 
     function initialize() {
         var courses = d3.select('#courses ul').selectAll('li')

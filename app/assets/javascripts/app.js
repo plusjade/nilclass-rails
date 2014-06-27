@@ -23,20 +23,6 @@ World.width = d3.select('svg').node().clientWidth;
 
 World.page = new Page("#description");
 
-var courses = new Courses;
-// There's only one course to start.
-var course = courses.data()[0];
-courses.update(course);
-World.diagram = new Diagram(course.url);
-
-World.diagram.getFromQueryString(window.location.search, function(graph, index) {
-    Display.update(graph);
-    Navigation.render();
-    World.diagram.steps(function(steps) {
-        Navigation.update(steps, index);
-    })
-})
-
 d3.select("body")
     .on("keydown", function(){
         if(d3.event.keyCode === 39) // right arrow
