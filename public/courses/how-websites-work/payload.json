@@ -3,31 +3,27 @@
     "steps": [
         {
             "url" : "internet",
-            "name" : "web-page",
-            "title" : "For the Love of the Web.",
+            "content" : "how-websites-work",
             "focus" : "You"
         }
         ,
         {
             "url" : "internet",
-            "name" : "web-browser",
-            "title" : "Accessing Web Pages.",
+            "content" : "web-browser",
             "focus" : "Laptop",
             "focusPath" : ["You", "Laptop"]
         }
         ,
         {
             "url" : "internet",
-            "name" : "Internet",
-            "title" : "The Internet.",
+            "content" : "internet",
             "focus" : "Internet",
             "focusPath" : ["You", "Laptop", "Internet"]
         }
         ,
         {
             "url" : "internet",
-            "name" : "static-server",
-            "title" : "The Server.",
+            "content" : "server",
             "focus" : "Server",
             "focusPath" : ["You", "Laptop", "Internet", "Server"]
         }
@@ -35,8 +31,7 @@
         ,
         {
             "url" : "static-server",
-            "name" : "web-server",
-            "title" : "The Web Server.",
+            "content" : "web-server",
             "focus" : "Web Server",
             "focusPath" : ["You", "Laptop", "Internet", "Server", "Web Server", "Filesystem"]
         }
@@ -44,8 +39,7 @@
         ,
         {
             "url" : "static-server",
-            "name" : "filesystem",
-            "title" : "Videos, Images, and Other Goodies.",
+            "content" : "serving-content",
             "focus" : "Filesystem",
             "focusPath" : ["You", "Laptop", "Internet", "Server", "Web Server", "Filesystem"]
         }
@@ -53,8 +47,7 @@
         ,
         {
             "url" : "web-application",
-            "name" : "web-application",
-            "title" : "The Web Application.",
+            "content" : "web-application",
             "focus" : "Application",
             "focusPath" : ["You", "Laptop", "Internet", "Server", "Web Server", "Application", "Filesystem"]
         }
@@ -62,8 +55,7 @@
         ,
         {
             "url" : "database",
-            "name" : "database",
-            "title" : "The Database.",
+            "content" : "database",
             "focus" : "Database",
             "focusPath" : ["You", "Laptop", "Internet", "Server", "Web Server", "Application", "Database"]
         }
@@ -71,8 +63,7 @@
         ,
         {
             "url" : "dedicated-database",
-            "name" : "dedicated-database",
-            "title" : "The Database Server.",
+            "content" : "database-server",
             "focus" : "Database Server",
             "focusPath" : ["You", "Laptop", "Internet", "Server", "Web Server", "Application", "Database Server"]
         }
@@ -80,8 +71,7 @@
         ,
         {
             "url" : "reverse-proxy",
-            "name" : "reverse-proxy",
-            "title" : "Handling More Traffic.",
+            "content" : "reverse-proxy",
             "focus" : "Reverse Proxy",
             "focusPath" : ["You", "Laptop", "Internet", "Reverse Proxy", "Server"]
         }
@@ -89,8 +79,7 @@
         ,
         {
             "url" : "multi-app-architecture",
-            "name" : "multi-app-architecture",
-            "title" : "Adding More Servers.",
+            "content" : "multi-app-architecture",
             "focus" : ["Server", "Server (clone 1)", "Server (clone 2)"],
             "focusPaths" : [
                 ["You", "Laptop", "Internet", "Reverse Proxy", "Server"],
@@ -100,8 +89,7 @@
         ,
         {
             "url" : "multi-app-architecture",
-            "name" : "multi-app-database",
-            "title" : "Data Integrity.",
+            "content" : "multi-app-database",
             "focus" : ["Database Server"],
             "focusPaths" : [
                 ["Server", "Web Server", "Application", "Database Server"],
