@@ -93,6 +93,7 @@ GEM
     rake (10.2.2)
     rdoc (3.12.2)
       json (~> 1.4)
+    redcarpet (2.3.0)
     ref (1.0.5)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
@@ -142,6 +143,7 @@ DEPENDENCIES
   cucumber
   haml
   rails (= 3.2.17)
+  redcarpet
   rspec
   sass-rails (~> 3)
   therubyracer
