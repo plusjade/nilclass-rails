@@ -56,7 +56,13 @@ var Navigation = {
             self.highlight(index);
             self.current = index;
             if (step) {
-                history.pushState(null, null, '?q=' + step);
+                var url = window.location.pathname.split('/');
+                // (4 slots)
+                if (url.length === 4) {
+                    url.pop(); //   / course / course_id / step_name
+                }
+                url.push(step);
+                history.replaceState(null, null, url.join('/'));
             }
         })
     }

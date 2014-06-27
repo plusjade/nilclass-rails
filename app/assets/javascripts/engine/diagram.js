@@ -150,10 +150,11 @@ var Diagram = function(endpoint) {
 
     function getGraphFromQueryString(queryString) {
         var index = 0;
-        var query = (/q=[\w\-]+/).exec(queryString);
-        if (query) {
-            query = query[0].slice(2);
-            index = Pages[query] || 0;
+        var parts = queryString.split('/');
+        parts.shift(); // remove leading slash.
+
+        if(parts.length === 3) {
+            index = Pages[parts[2]] || 0;
         }
 
         return getGraph(index);
@@ -211,10 +212,10 @@ var Diagram = function(endpoint) {
     }
 
     function pathEndpoint(diagram) {
-        return '/data/paths/' + endpoint + '.json?' + Math.random();
+        return '/courses/' + endpoint + '.json?' + Math.random();
     }
 
     function dataEndpoint(diagram) {
-        return '/data/diagrams/' + diagram + '.json?' + Math.random();
+        return '/diagrams/' + diagram + '.json?' + Math.random();
     }
 }
