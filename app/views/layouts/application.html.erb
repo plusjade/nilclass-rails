@@ -267,8 +267,13 @@
 
     <div id="item-content"></div>
 
-    <div id="world"></div>
+    <div id="world">
+    <% @course.payload["steps"].each do |step| %>
+      <%= step[:content].html_safe %>
+    <% end %>
+    </div>
 
+    <script>document.getElementById('world').innerHTML = '';</script>
     <%= javascript_include_tag "application" %>
     <script>
       var courses = new Courses([
