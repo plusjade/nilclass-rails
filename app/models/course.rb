@@ -1,31 +1,21 @@
 class Course
   class NotFound < StandardError ; end
+  attr_reader :name
 
   def initialize(name)
     raise "Name can't be blank" if name.blank?
 
-    @content_path = Rails.root.join('public','courses', name, 'content.md')
-    @data_path = Rails.root.join('public','courses', name, 'payload.json')
+    @name = name
+    @content_path = Rails.root.join('public','courses', "#{ name }.md")
 
     raise NotFound, "File does not exist: #{@content_path}" unless File.exist? @content_path
-    raise NotFound, "File does not exist: #{@data_path}" unless File.exist? @data_path
   end
 
   def payload
-    data["steps"].each do |step|
-      if step["content"] && content_dictionary[step["content"]]
-        step.merge!(content_dictionary[step["content"]])
-      end
-    end
-
-    data
+    readme.payload
   end
 
-  def content_dictionary
-    @content_dictionary ||= Readme.new( File.open(@content_path).read ).dictionary
-  end
-
-  def data
-    @data ||= JSON.parse(File.open(@data_path).read)
+  def readme
+    @readme ||= Readme.new( File.open(@content_path).read )
   end
 end

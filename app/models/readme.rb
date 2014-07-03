@@ -5,24 +5,44 @@ class Readme
     @total_lines = @content.present? ? @content.lines.count : 0
   end
 
-  def dictionary
-    return @dictionary if @dictionary
-    @dictionary = {}
-    headers_human.each_with_index.each do |header, i|
-      slug = OutputRenderer.clean_slug_and_escape(header)
-      @dictionary[slug] = {
-        title: header,
-        name: slug,
-        index: i,
-        content: chunk(i)
-      }
-    end
-
-    @dictionary
+  def payload
+    attributes.merge({ "steps" => steps })
   end
 
-  def chunk(index)
-    parse_chunk(index)
+  # Top Level attributes for this course.
+  def attributes
+    json = ''
+    data_open = false
+    data_close = false
+    @content.each_line do |line|
+      if line.starts_with?('{')
+        data_open = true
+      elsif line.starts_with?('}')
+        data_open = false
+        data_close = true
+        json += line
+        break
+      end
+
+      if data_open
+        json += line
+      end
+    end
+
+    MultiJson.decode(json)
+  end
+
+  # Parsed steps for this course.
+  def steps
+    @steps ||= headers_human.each_with_index.map do |header, i|
+                slug = OutputRenderer.clean_slug_and_escape(header)
+
+                parse_chunk(i).merge({
+                  title: header,
+                  name: slug,
+                  index: i,
+                })
+              end
   end
 
   def headers_human
@@ -58,14 +78,36 @@ class Readme
 
     end_index = headers[index+1] ? headers[index+1][:index] : @total_lines
 
-
     output = @content
               .lines
               .to_a
               .slice(headers[index][:index], (end_index-headers[index][:index]))
               .join
 
+    data_open = false
+    data_close = false
+    json = ''
+    content = ''
 
-    OutputRenderer.markdown(output)
+    output.each_line.each do |line|
+      if line.starts_with?('{')
+        data_open = true
+      elsif line.starts_with?('}')
+        data_open = false
+        data_close = true
+        json += line
+        next
+      end
+
+      if data_close || !data_open
+        content += line
+      else
+        json += line
+      end
+    end
+
+    {
+      content: OutputRenderer.markdown(content)
+    }.merge(MultiJson.decode(json))
   end
 end
