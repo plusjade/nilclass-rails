@@ -90,7 +90,7 @@
 }
 
 #world {
-  position: relative;
+  position: absolute;
   top:0;
   left:35%;
   bottom:0;
@@ -122,8 +122,9 @@
     padding: 0;
     margin: 0;
     font-size: 13px;
+    list-style: none;
+    counter-reset: chapter;
     li {
-      list-style-position: inside;
       color: #555;
       border-bottom: 1px solid #eee;
     }
@@ -144,6 +145,11 @@
       color: inherit;
       font-size: inherit;
       cursor: pointer;
+
+      &:before {
+        content: counter(chapter) ". ";
+        counter-increment: chapter;
+      }
     }
   }
 }
@@ -192,6 +198,10 @@
     background-color: #FFF;
     height: 100%;
   }
+  h1 {
+    font-size: 18px;
+    margin: 0 0 20px 0;
+  }
   h3 {
     font-size: 16px;
     font-weight: bold;
@@ -204,5 +214,11 @@
   a {
     color: green;
     text-decoration: underline;
+  }
+  pre {
+    font-size: inherit;
+    overflow: auto;
+    background-color: #eee;
+    color: #555;
   }
 }
