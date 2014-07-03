@@ -9,6 +9,7 @@ module OutputRenderer
       filter_html: true,
       autolink: true,
       fenced_code_blocks: true,
+      no_intra_emphasis: true
     ).render(content)
   end
 
