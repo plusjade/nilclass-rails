@@ -61,13 +61,7 @@ var Plot = function() {
         item._id = item.name;
         item.index = z;
 
-        // temp hack. model 3D.
-        item.depth = 0;
-        if (['software', 'document-html', 'image', 'video-2', 'filesystem'].indexOf(item.icon) != -1) {
-            item.depth = 1;
-        }
-
-        var coord = gridify(item.grid, (item.depth > 0 ? 100 : 125));
+        var coord = gridify(item.grid, 125);
 
         item.x0 = previous.x;
         item.y0 = previous.y; 
@@ -85,43 +79,40 @@ var Plot = function() {
 
     // parses grid statements to determine relative coordinate offset.
     // Example:
-    // "top-right 2" returns an x,y coordinate that is top and to the right
-    // as measured in spacing units.
+    // "up:2 left:3" returns x,y coordinate up 2 spaces, left 3 spaces where
+    // spaces is an arbitrary spacing unit specified at runtime.
     function gridify(input, spacing) {
         if(!spacing) spacing = 100;
-        var parts = (input ? input.split(/\s+/) : []),
-            grid = parts[0], 
-            multiple = (parts[1] || 1),
+        var directives = (input ? input.split(/\s+/) : []),
+            data = {},
             x = 0,
             y = 0;
 
-        if (grid === "top") {
-            y = -(spacing * multiple);
-        }
-        else if (grid === "top-right") {
-            x = (spacing * multiple);
-            y = -(spacing * multiple);
-        }
-        else if (grid === "right") {
-            x = (spacing * multiple);
-        }
-        else if (grid === "bottom-right") {
-            x = (spacing * multiple);
-            y = (spacing * multiple);
-        }
-        else if (grid === "bottom") {
-            y = (spacing * multiple);
-        }
-        else if (grid === "bottom-left") {
-            x = -(spacing * multiple);
-            y = (spacing * multiple);
-        }
-        else if (grid === "left") {
-            x = -(spacing * multiple);
-        }
-        else if (grid === "top-left") {
-            x = -(spacing * multiple);
-            y = -(spacing * multiple);
+        directives.forEach(function(directive) {
+            var multiple = 1;
+            if (directive.indexOf(':') > -1 ) {
+                var parts = directive.split(':');
+                directive = parts[0];
+                multiple = parseFloat(parts[1]);
+            }
+
+            data[directive] = multiple;
+        })
+
+        for(key in data) {
+            var coord = spacing * data[key];
+            if (key === "up") {
+                y = -(coord);
+            }
+            else if (key === "down") {
+                y = coord;
+            }
+            else if (key === "right") {
+                x = coord;
+            }
+            else if (key === "left") {
+                x = -(coord);
+            }
         }
 
         return { x : x, y : y };
