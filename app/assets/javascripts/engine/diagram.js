@@ -90,7 +90,7 @@ var Diagram = function(endpoint) {
                             parseSteps(data);
 
                             Paths.forEach(function(path) {
-                                path.step = Urls[path.url];
+                                path.step = Urls[path.diagramStep];
                             })
 
                             callback();
@@ -122,8 +122,8 @@ var Diagram = function(endpoint) {
     function parseSteps(data) {
         Steps = Expand(data.steps);
         Steps.forEach(function(step, i) {
-            if(step.url) {
-                Urls[step.url] = i;
+            if(step.diagramStep) {
+                Urls[step.diagramStep] = i;
             }
         })
     }
