@@ -6,10 +6,10 @@ var Graph = function(items) {
         var dict = {};
         items.forEach(function(item, i) {
             if(items[i+1]) {
-                item.mapTo = [items[i+1].name];
+                item.mapTo = [items[i+1].id];
             }
 
-            dict[item.name] = item;
+            dict[item.id] = item;
         })
 
         return dict;
@@ -28,7 +28,7 @@ var Graph = function(items) {
 
     this.dict = dictify(items);
     // TODO: Verify the root exists.
-    this._root = items[0].name;
+    this._root = items[0].id;
     this._meta = {};
 
     this.meta = function(key) {
@@ -66,7 +66,7 @@ var Graph = function(items) {
             return this.get(key);
         }
         else {
-            throw "Could not find item using name: " + key;
+            throw "Could not find item using id: " + key;
         }
     }
 
@@ -79,20 +79,20 @@ var Graph = function(items) {
     this.add = function(items, from) {
         this.find(from);
         this.addToDict(items);
-        this.addMapping(from, items[0].name);
+        this.addMapping(from, items[0].id);
     }
 
     // Insert an item into the graph in relation (mapped) to another item.
     this.insert = function(items, from) {
-        var name = items[0].name;
-        var lastName = items[items.length-1].name;
+        var id = items[0].id;
+        var lastName = items[items.length-1].id;
         var initialConnections = this.mappings(from);
 
         this.find(from);
         this.addToDict(items);
 
         // insert first item right after the "from" item.
-        this.get(from).mapTo = [name];
+        this.get(from).mapTo = [id];
 
         // The last item of the new group needs to be mapped to the "from" item's mappings.
         // map the initial "mapTo" from "from" item to the end of the new group.
@@ -105,7 +105,7 @@ var Graph = function(items) {
         var self = this;
         coerceArray(items).forEach(function(item) {
             for(key in item) {
-                self.dict[item.name][key] = item[key];
+                self.dict[item.id][key] = item[key];
             }
         })
     }

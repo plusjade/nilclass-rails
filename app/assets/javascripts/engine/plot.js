@@ -16,10 +16,10 @@ var Plot = function() {
         var links = [];
 
         for(key in graph.dict) {
-            graph.connections(key).forEach(function(name) {
+            graph.connections(key).forEach(function(id) {
                 links.push({
                     source: graph.find(key),
-                    target: graph.find(name)
+                    target: graph.find(id)
                 });
             })
         }
@@ -58,7 +58,7 @@ var Plot = function() {
     function walk(graph, start, previous) {
         var item = graph.find(start);
 
-        item._id = item.name;
+        item._id = item.id || item.name;
         item.index = z;
 
         var coord = gridify(item.grid, 125);

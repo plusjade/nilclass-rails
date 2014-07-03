@@ -195,7 +195,7 @@ var Diagram = function(endpoint) {
                     graph.update(action.items);
                     break;
                 case "remove":
-                    var names = action.items.map(function(item){ return item.name });
+                    var names = action.items.map(function(item){ return item.id });
                     graph.drop(names);
                     break;
             }

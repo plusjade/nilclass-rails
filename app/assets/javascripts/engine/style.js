@@ -45,7 +45,7 @@ var Style = {
                 return d.depth > 0 ? 35 : 45;
             })
             .attr("text-anchor", "middle")
-            .text(function(d) { return d.name })
+            .text(function(d) { return d.name || d.id })
             .style("font-size", function(d) { 
                 return d.depth > 0 ? '10px' : '14px';
             })
