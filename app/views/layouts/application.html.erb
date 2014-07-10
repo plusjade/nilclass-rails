@@ -269,7 +269,7 @@
 
     <div id="world">
     <% @course.payload["steps"].each do |step| %>
-      <%= step[:content].html_safe %>
+      <%= step[:content].to_s.html_safe %>
     <% end %>
     </div>
 
