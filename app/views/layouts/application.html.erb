@@ -2,7 +2,8 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-    <%= stylesheet_link_tag "application", :media => "all" %>    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= stylesheet_link_tag "application", :media => "all" %>
   <% if Rails.env.production? %>
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script type="text/javascript">
