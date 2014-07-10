@@ -46,6 +46,10 @@ var Display = (function() {
             .filter(function(d) { return d.icon != "software" })
             .call(Style.icon)
 
+        nodeEnter
+            .filter(function(d) { return !!d.text })
+            .call(Style.text)
+
         nodeEnter.call(Style.labels);
 
         // Transition nodes to their new position.

@@ -1,4 +1,17 @@
 var Style = {
+    text : function(nodes) {
+        return nodes
+            .append("svg:text")
+            .attr("dy", function(d) {
+                return 65;
+            })
+            .attr("text-anchor", function(d) { return d['text-anchor'] || 'middle' })
+            .text(function(d) { return d.text })
+            .style("font-size", 12)
+            .style("fill-opacity", 1);
+    }
+
+    ,
     clicker : function(nodes) {
         nodes.append('circle')
             .attr('class', 'clicker')
