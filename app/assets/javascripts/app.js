@@ -12,11 +12,16 @@ World.container = World.wrap
     .append("svg:g")
         .attr("transform", "translate(0,0)")
 
-World.wrap.call(d3.behavior.zoom().on("zoom", function() {
-    World.container.attr("transform",
-        "translate(" + d3.event.translate + ")"
-        + " scale(" + d3.event.scale + ")");
-}))
+World.zoom = d3.behavior.zoom()
+                .scaleExtent([0.5, 2.5])
+                .on("zoom", function() {
+                    World.container.attr("transform",
+                        "translate(" + d3.event.translate + ")"
+                        + " scale(" + d3.event.scale + ")");
+                })
+
+
+World.wrap.call(World.zoom);
 
 
 World.width = d3.select('svg').node().clientWidth;
