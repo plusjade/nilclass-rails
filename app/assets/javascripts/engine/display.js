@@ -33,7 +33,7 @@ var Display = (function() {
             .data(nodes, function(d) { return d._id });
 
         var nodeEnter = node.enter().append("svg:g")
-            .attr('class', function(d){ return 'node ' + d.name })
+            .attr('class', function(d){ return 'node ' + d.icon })
             .attr("transform", function(d) {
                 return "translate(" + (d.x0 || root.x0) + "," + (d.y0 || root.y0) + ")";
             })
