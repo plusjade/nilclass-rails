@@ -276,14 +276,10 @@
     <script>document.getElementById('world').innerHTML = '';</script>
     <%= javascript_include_tag "application" %>
     <script>
-      var courses = new Courses([
-          {
-              "name": "How Websites Work.",
-              "url" : "how-websites-work"
-          }
-      ]);
+      var courses = new Courses(<%= Course.all.to_json.html_safe %>);
 
-      var course = courses.data()[0];
+
+      var course = <%= Course.find(@course.name).to_json.html_safe %>;
       courses.update(course);
       World.diagram = new Diagram(course.url);
       World.diagram.getFromQueryString(window.location.pathname, function(graph, index) {
