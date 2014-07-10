@@ -77,6 +77,9 @@ var Graph = function(items) {
 
     // Add an item to the graph in relation (mapped) to another item.
     this.add = function(items, from) {
+        if(!from) {
+            throw "Add action requires a valid 'from' item.";
+        }
         this.find(from);
         this.addToDict(items);
         this.addMapping(from, items[0].id);

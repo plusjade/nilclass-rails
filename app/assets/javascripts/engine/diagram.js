@@ -181,6 +181,9 @@ var Diagram = function(endpoint) {
                         [step.action] :
                         (step.actions ? step.actions : []);
 
+        if(actions.length === 0) {
+            throw "The step '"+ step.diagramStep + "' has 0 action statements."
+        }
         actions.forEach(function(action) {
             verifyMethod(action.method);
 
