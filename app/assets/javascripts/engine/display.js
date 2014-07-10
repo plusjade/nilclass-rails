@@ -53,7 +53,8 @@ var Display = (function() {
             .duration(World.duration)
             .attr("transform", function(d) {
                 return "translate(" + d.x + "," + d.y + ")";
-            });
+            })
+            .attr('display', function(d){ return d.hide ? 'none' : false })
 
         nodeUpdate.select("text")
             .style("fill-opacity", 1);
