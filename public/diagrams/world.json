@@ -1,35 +1,37 @@
 {
     "steps": [
         {
-            "url" : "internet",
+            "diagramStep" : "internet",
             "action" : {
                 "method" : "add",
                 "items" : [
                     {
                         "item" : "user",
                         "icon" : "girl",
-                        "name" : "Anna",
+                        "id" : "Anna",
                         "content" : "This is Anna.",
                         "connect" : ["Phone"]
                     }
                     ,
                     {
                         "item" : "user",
-                        "grid" : "bottom",
+                        "id" : "You",
+                        "grid" : "down",
                         "connect" : ["Laptop"]
                     }
                     ,
                     {
                         "item" : "user",
-                        "name" : "Pinky",
+                        "id" : "Pinky",
                         "content" : "This is Pinky =D.",
                         "icon" : "cat",
-                        "grid" : "bottom",
+                        "grid" : "down",
                         "connect" : ["Tablet"]
                     }
                     ,
                     {
                         "item" : "tablet",
+                        "id" : "Tablet",
                         "grid" : "right",
                         "connect" : "Internet"
                     }
@@ -37,24 +39,28 @@
                     ,
                     {
                         "item": "laptop",
-                        "grid" : "top",
+                        "id" : "Laptop",
+                        "grid" : "up",
                         "connect" : "Internet"
                     }
                     ,
 
                     {
                         "item" : "iphone",
-                        "grid" : "top",
+                        "id" : "Phone",
+                        "grid" : "up",
                         "connect" : "Internet"
                     }
                     ,
                     {
                         "item": "internet",
-                        "grid" : "bottom-right"
+                        "id" : "Internet",
+                        "grid" : "down right"
                     }
                     ,
                     {
                         "item": "server",
+                        "id" : "Server",
                         "grid" : "right",
                         "connect" : ["Internet"]
                     }
@@ -64,42 +70,44 @@
 
         ,
         {
-            "url" : "static-server",
+            "diagramStep" : "static-server",
             "action" : {
                 "method" : "add",
                 "from" : "Server",
                 "items" : [
                     {
                         "item": "web-server",
-                        "grid" : "bottom-right",
+                        "id" : "Web Server",
+                        "grid" : "down right",
                         "connect" : ["Server", "Filesystem"]
                     }
                     ,
                     {
                         "item": "filesystem",
+                        "id" : "Filesystem",
                         "grid" : "right",
                         "connect" : ["HTML", "Image", "Video"]
                     }
                     ,
                     {
                         "item" : "icon",
-                        "name" : "HTML",
+                        "id" : "HTML",
                         "icon" : "document-html",
-                        "grid" : "top-right"
+                        "grid" : "up right"
                     }
                     ,
                     {
                         "item" : "icon",
-                        "name" : "Image",
+                        "id" : "Image",
                         "icon" : "image",
-                        "grid" : "bottom"
+                        "grid" : "down"
                     }
                     ,
                     {
                         "item" : "icon",
-                        "name" : "Video",
+                        "id" : "Video",
                         "icon" : "video-2",
-                        "grid" : "bottom"
+                        "grid" : "down"
                     }
                 ]
             }
@@ -107,7 +115,7 @@
 
         ,
         {
-            "url" : "web-application",
+            "diagramStep" : "web-application",
             "actions" : [
                 {
                     "method" : "insert",
@@ -115,6 +123,7 @@
                     "items" : [
                         {
                             "item": "application",
+                            "id" : "Application",
                             "grid" : "right",
                             "connect" : ["Web Server", "Filesystem"]
                         }
@@ -125,7 +134,7 @@
                     "method" : "update",
                     "items" : [
                         {
-                            "name" : "Web Server",
+                            "id" : "Web Server",
                             "connect" : ["Server"]
                         }
                     ]
@@ -135,7 +144,7 @@
 
         ,
         {
-            "url" : "database",
+            "diagramStep" : "database",
             "actions" : [
                 {
                     "method" : "add",
@@ -143,7 +152,8 @@
                     "items" : [
                         {
                             "item": "database",
-                            "grid" : "top-right",
+                            "id" : "Database",
+                            "grid" : "up right",
                             "connect" : "Application"
                         }
                     ]
@@ -153,8 +163,8 @@
                     "method" : "update",
                     "items" : [
                         {
-                            "name" : "Filesystem",
-                            "grid" : "bottom-right"
+                            "id" : "Filesystem",
+                            "grid" : "down right"
                         }
                     ]
                 }
@@ -163,7 +173,7 @@
 
         ,
         {
-            "url" : "dedicated-database",
+            "diagramStep" : "dedicated-database",
             "actions" : [
                 {
                     "method" : "add",
@@ -171,7 +181,8 @@
                     "items" : [
                         {
                             "item": "dedicated-database",
-                            "grid" : "top-right 2",
+                            "id" : "Database Server",
+                            "grid" : "up right 2",
                             "connect" : "Application"
                         }
                     ]
@@ -181,7 +192,7 @@
                     "method" : "remove",
                     "items" : [
                         {
-                            "name": "Database"
+                            "id": "Database"
                         }
                     ]
                 }
@@ -190,13 +201,14 @@
 
         ,
         {
-            "url" : "reverse-proxy",
+            "diagramStep" : "reverse-proxy",
             "action" : {
                 "method" : "insert",
                 "from" : "Internet",
                 "items" : [
                     {
                         "item": "reverse-proxy",
+                        "id" : "Reverse Proxy",
                         "grid" : "right"
                     }
                 ]
@@ -205,7 +217,7 @@
 
         ,
         {
-            "url" : "multi-app-architecture",
+            "diagramStep" : "multi-app-architecture",
             "actions" : [
                 {
                     "method" : "add",
@@ -213,21 +225,21 @@
                     "items" : [
                         {
                             "item": "server",
-                            "name" : "Server (clone 1)",
-                            "grid" : "top 2",
+                            "id" : "Server (clone 1)",
+                            "grid" : "up:2",
                             "connect" : ["Reverse Proxy", "Web Server clone 1"]
                         }
                         ,
                         {
                             "item": "web-server",
-                            "name" : "Web Server clone 1",
-                            "grid" : "bottom-right",
+                            "id" : "Web Server clone 1",
+                            "grid" : "down right",
                             "connect" : ["App clone 1"]
                         }
                         ,
                         {
                             "item": "application",
-                            "name" : "App clone 1",
+                            "id" : "App clone 1",
                             "grid" : "right",
                             "connect" : "Database Server"
                         }
@@ -240,21 +252,21 @@
                     "items" : [
                         {
                             "item": "server",
-                            "name" : "Server (clone 2)",
-                            "grid" : "bottom 2",
+                            "id" : "Server (clone 2)",
+                            "grid" : "down:2",
                             "connect" : ["Reverse Proxy", "Web Server clone 2"]
                         }
                         ,
                         {
                             "item": "web-server",
-                            "name" : "Web Server clone 2",
-                            "grid" : "bottom-right",
+                            "id" : "Web Server clone 2",
+                            "grid" : "down right",
                             "connect" : ["App clone 2"]
                         }
                         ,
                         {
                             "item": "application",
-                            "name" : "App clone 2",
+                            "id" : "App clone 2",
                             "grid" : "right",
                             "connect" : "Database Server"
                         }
@@ -265,7 +277,7 @@
                     "method" : "update",
                     "items" : [
                         {
-                            "name" : "Application",
+                            "id" : "Application",
                             "grid" : "right 2"
                         }
                     ]
