@@ -49,7 +49,7 @@ var Style = {
             .style("font-size", function(d) { 
                 return d.depth > 0 ? '10px' : '14px';
             })
-            .style("fill-opacity", 1e-6);
+            .style("fill-opacity", 1);
     }
 
     ,

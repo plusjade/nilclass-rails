@@ -64,8 +64,8 @@ var Display = (function() {
             .style("fill-opacity", 0)
             .remove();
 
-        nodeExit.select("circle").attr("r", 1e-6);
-        nodeExit.select("text").style("fill-opacity", 1e-6);
+        nodeExit.select("circle").attr("r", 1);
+        nodeExit.select("text").style("fill-opacity", 1);
     }
 
     function updateLinks(linkData, namespace) {
