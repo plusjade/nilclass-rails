@@ -155,7 +155,7 @@ var Diagram = function(endpoint) {
     }
 
     // stay in bounds
-     function boundedIndex(index) {
+    function boundedIndex(index) {
         if (index < 0) {
             index = Paths.length-1;
         }
