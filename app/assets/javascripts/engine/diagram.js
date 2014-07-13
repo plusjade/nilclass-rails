@@ -21,8 +21,6 @@ var Diagram = function(endpoint) {
     // Get graph at <index>.
     // The callback receives: 
     //  [Graph] - graph.
-    //  [Integer] - index. The step's index.
-    //  [String,null] - step name. The step's name if available.
     this.get = function(index, callback) {
         resolve(function() {
             callback.apply(this, getGraph(index));
@@ -32,8 +30,6 @@ var Diagram = function(endpoint) {
     // Get graph at <index> where <index> is coerced to remain within step bounds.
     // The callback receives:
     //  [Graph] - graph.
-    //  [Integer] - index. The step's index.
-    //  [String,null] - step name. The step's name if available.
     this.getBounded = function(index, callback) {
         resolve(function() {
             index = boundedIndex(index);
@@ -42,14 +38,13 @@ var Diagram = function(endpoint) {
         })
     }
 
-    // Get graph by step name.
+    // Get graph by step slug.
     // The callback receives: 
     //  [Graph] - graph.
-    //  [Integer] - index. The step's index.
-    //  [String,null] - step name. The step's name if available.
-    this.getByStepName = function(name, callback) {
+    this.getByStepName = function(slug, callback) {
         resolve(function() {
-            var index = Pages[name] || 0;
+            var index = Pages[slug] || 0;
+
             callback.apply(this, getGraph(index));
         })
     }
@@ -60,7 +55,7 @@ var Diagram = function(endpoint) {
     this.steps = function(callback) {
         resolve(function() {
             callback( Paths.map(function(d) {
-                return { name: d.name, title: d.title };
+                return { slug: d.slug, title: d.title };
             }) )
         })
     }
@@ -114,8 +109,8 @@ var Diagram = function(endpoint) {
     function parsePath(data) {
         Paths = data.steps;
         Paths.forEach(function(step, i) {
-            if(step.name) {
-                Pages[step.name.toLowerCase()] = i;
+            if(step.slug) {
+                Pages[step.slug] = i;
             }
         })
     }
@@ -147,11 +142,7 @@ var Diagram = function(endpoint) {
         graph.setMeta(Paths[index]);
         graph.setMeta({ "total" : Paths.length });
 
-        return [graph, index, getPage(index)];
-    }
-
-    function getPage(index) {
-        return Paths[index] ? Paths[index].name : null;
+        return [graph];
     }
 
     // stay in bounds

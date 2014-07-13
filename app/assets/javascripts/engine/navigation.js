@@ -52,17 +52,17 @@ var Navigation = {
     // Internal. Prgramatically navigate to step at index.
     navigate : function(index) {
         var self = this;
-        World.diagram.getBounded(index, function(graph, index, step) {
+        World.diagram.getBounded(index, function(graph) {
             Display.update(graph);
-            self.highlight(index);
-            self.current = index;
-            if (step) {
+            self.current = graph.meta('index');
+            self.highlight(self.current);
+            if (graph.meta('slug')) {
                 var url = window.location.pathname.split('/');
                 // (4 slots)
                 if (url.length === 4) {
                     url.pop(); //   / course / course_id / step_name
                 }
-                url.push(step);
+                url.push(graph.meta('slug'));
                 history.replaceState(null, null, url.join('/'));
             }
         })

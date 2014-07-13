@@ -382,11 +382,11 @@
       urlParts.shift(); // remove leading slash.
       var stepName = urlParts.length === 3 ? urlParts[2] : '_';
 
-      World.diagram.getByStepName(stepName, function(graph, index) {
+      World.diagram.getByStepName(stepName, function(graph) {
           Display.update(graph);
           Navigation.render();
           World.diagram.steps(function(steps) {
-              Navigation.update(steps, index);
+              Navigation.update(steps, graph.meta('index'));
           })
       })
       <%= yield :page_javascripts %>

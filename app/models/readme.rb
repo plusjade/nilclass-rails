@@ -39,7 +39,7 @@ class Readme
 
                 parse_chunk(i).merge({
                   title: header,
-                  name: slug,
+                  slug: slug,
                   index: i,
                 })
               end
