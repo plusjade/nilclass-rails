@@ -20,9 +20,30 @@ World.zoom = d3.behavior.zoom()
                         + " scale(" + d3.event.scale + ")");
                 })
 
-
 World.wrap.call(World.zoom);
 
+var zoomControls = d3.select("#world").append('div').attr('id', 'zoom-controls');
+zoomControls
+    .append('div').html('<i class="fa fa-plus"></i>')
+    .on('click', function(d) {
+        d3.event.preventDefault();
+        var scale = World.zoom.scale() + 0.2;
+        if(scale < World.zoom.scaleExtent()[1]) {
+            World.zoom.scale(scale);
+            World.zoom.event(World.container);
+        }
+    })
+zoomControls
+    .append('div').html('<i class="fa fa-minus"></i></div>')
+    .on('click', function(d) {
+        d3.event.preventDefault();
+        World.zoom.scaleExtent[1]
+        var scale = World.zoom.scale() - 0.2;
+        if(scale > World.zoom.scaleExtent()[0]) {
+            World.zoom.scale(scale);
+            World.zoom.event(World.container);
+        }
+    })
 
 World.width = d3.select('svg').node().clientWidth;
 
@@ -35,3 +56,5 @@ d3.select("body")
         else if(d3.event.keyCode === 37) // left arrow
             Navigation.previous()
     })
+
+

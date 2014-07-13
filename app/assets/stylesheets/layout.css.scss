@@ -151,7 +151,7 @@
 
 #world {
   position: absolute;
-  top:0;
+  top:40px;
   left:28%;
   bottom:0;
   right:0;
@@ -315,6 +315,27 @@
     line-height: 1.5em;
     li {
       margin-bottom: 5px;
+    }
+  }
+}
+
+#zoom-controls {
+  position: absolute;
+  bottom:20px;
+  right:20px;
+  background-color: #FFF;
+  box-shadow: 0 0 4px 0 #ccc;
+  div {
+    padding: 0 10px;
+    font-size: 14px;
+    line-height: 28px;
+    color: #777;
+    cursor: pointer;;
+    &:first-child {
+      border-bottom: 1px solid #eee;
+    }
+    &:hover {
+      color: #333;
     }
   }
 }
