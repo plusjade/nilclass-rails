@@ -42,14 +42,15 @@ var Diagram = function(endpoint) {
         })
     }
 
-    // Get graph by page given via queryString in the format: '?q=<page>'
+    // Get graph by step name.
     // The callback receives: 
     //  [Graph] - graph.
     //  [Integer] - index. The step's index.
     //  [String,null] - step name. The step's name if available.
-    this.getFromQueryString = function(queryString, callback) {
+    this.getByStepName = function(name, callback) {
         resolve(function() {
-            callback.apply(this, getGraphFromQueryString(queryString));
+            var index = Pages[name] || 0;
+            callback.apply(this, getGraph(index));
         })
     }
 
@@ -147,18 +148,6 @@ var Diagram = function(endpoint) {
         graph.setMeta({ "total" : Paths.length });
 
         return [graph, index, getPage(index)];
-    }
-
-    function getGraphFromQueryString(queryString) {
-        var index = 0;
-        var parts = queryString.split('/');
-        parts.shift(); // remove leading slash.
-
-        if(parts.length === 3) {
-            index = Pages[parts[2]] || 0;
-        }
-
-        return getGraph(index);
     }
 
     function getPage(index) {

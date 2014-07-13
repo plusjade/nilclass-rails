@@ -372,12 +372,17 @@
     <%= javascript_include_tag "application" %>
     <script>
       var courses = new Courses(<%= Course.all.to_json.html_safe %>);
-
-
       var course = <%= Course.find(@course.name).to_json.html_safe %>;
       courses.update(course);
+
       World.diagram = new Diagram(course.url);
-      World.diagram.getFromQueryString(window.location.pathname, function(graph, index) {
+
+      // Find the step name from the URL
+      var urlParts = window.location.pathname.split('/');
+      urlParts.shift(); // remove leading slash.
+      var stepName = urlParts.length === 3 ? urlParts[2] : '_';
+
+      World.diagram.getByStepName(stepName, function(graph, index) {
           Display.update(graph);
           Navigation.render();
           World.diagram.steps(function(steps) {
