@@ -86,7 +86,7 @@ var Diagram = function(endpoint) {
                             parseSteps(data);
 
                             Paths.forEach(function(path) {
-                                path.step = Urls[path.diagramStep];
+                                path.diagramStepIndex = Urls[path.diagramStep];
                             })
 
                             callback();
@@ -128,7 +128,7 @@ var Diagram = function(endpoint) {
     // diagrams are index dependent based on building the graph.
     // Example: Path[0] -> Step[2]
     function getGraph(index) {
-        var stepIndex = Paths[index].step,
+        var stepIndex = Paths[index].diagramStepIndex,
             steps = Steps.slice(0, stepIndex+1),
             items = JSON.parse(JSON.stringify(steps.shift().action.items)),
             graph = new Graph(items),
