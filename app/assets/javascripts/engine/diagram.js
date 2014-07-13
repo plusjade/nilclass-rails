@@ -144,6 +144,7 @@ var Diagram = function(endpoint) {
         }, graph);
 
         graph.setMeta(Paths[index]);
+        graph.setMeta({ "total" : Paths.length });
 
         return [graph, index, getPage(index)];
     }

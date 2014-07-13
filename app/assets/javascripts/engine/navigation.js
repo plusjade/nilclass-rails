@@ -42,6 +42,7 @@ var Navigation = {
                 .on('click', function(d, i) {
                     d3.event.preventDefault();
                     self.navigate(i);
+                    d3.select('#table-of-contents').classed('active', false);
                 })
 
         nodes.exit().remove();

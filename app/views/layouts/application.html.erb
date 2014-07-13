@@ -285,47 +285,49 @@
       </svg>
     </svg>
 
-
     <div id='top-bar'>
-      <a class="home" href="https://twitter.com/plusjade" target="_blank">@plusjade</a>
-      <!-- Begin MailChimp Signup Form -->
-      <div id="signup-form">
-      <form action="http://ruhoh.us1.list-manage.com/subscribe/post?u=af7ae466c004441192ef9e2c5&amp;id=dd36395f1e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-      <div class="mc-field-group">
-        <label for="mce-EMAIL">Like this lesson? Signup for new course alerts: </label>
-        <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="name@email.com">
-        <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+      <div id="steps-wrap">
+        <div id="steps-count">
+          <svg xmlns="http://www.w3.org/2000/svg" version="1.1" data-icon="caret-right" data-container-transform="translate(4 0)" viewBox="0 0 16 16">
+            <path d="M0 0v16l8-8-8-8z" transform="translate(4)" />
+          </svg>
+
+          <span> </span>
+          <i class='fa fa-chevron-down'> </i>
+        </div>
+        <div id="step">
+          <span>How Websites Work.</span>
+        </div>
       </div>
-        <div id="mce-responses" class="clear">
-          <div class="response" id="mce-error-response" style="display:none"></div>
-          <div class="response" id="mce-success-response" style="display:none"></div>
-        </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-          <div style="position: absolute; left: -5000px;"><input type="text" name="b_af7ae466c004441192ef9e2c5_dd36395f1e" tabindex="-1" value=""></div>
-      </form>
-      </div>
-      <!--End signup-form-->
+      <a id="courses-toggle" href="/">More Courses</a>
    </div>
    <div id='top-bar-spacer'></div>
 
-    <div id="courses">
-      <div class="title"><h2></h2></div>
-      <a class='courses' href='#'>&#9662;</a>
-      <ul></ul>
+   <div id="courses"><ul></ul></div>
+    <div id="course-title">
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.1" data-icon="caret-right" data-container-transform="translate(4 0)" viewBox="0 0 16 16">
+        <path d="M0 0v16l8-8-8-8z" transform="translate(4)" />
+      </svg>
+
+      <h2></h2>
     </div>
 
     <div id="table-of-contents">
-
-      <div id="prev-next">
-        <a class='prev' href='#'>
-          <i class='fa fa-chevron-left'>&lt;</i>
-        </a><a class='next' href='#'>
-          <i class='fa fa-chevron-right'>&gt;</i>
-        </a>
-      </div>
       <ol></ol>
-      <p style="font-size:12px; color:#777; margin-top:20px; text-align:center">
+      <p class="keyboard-info">
         Use keyboard arrows: <kbd>&larr;</kbd> <kbd>&rarr;</kbd>
       </p>
+    </div>
+
+    <div id="prev-next-wrap">
+      <div class="divider"></div>
+      <div id="prev-next">
+        <a class='prev' href='#'>
+          <i class='fa fa-chevron-left'> </i> <span>Previous</span>
+        </a><a class='next' href='#'>
+          <span>Next</span> <i class='fa fa-chevron-right'> </i>
+        </a>
+      </div>
     </div>
 
     <div id="description">
@@ -348,6 +350,22 @@
       <%= step[:content].to_s.html_safe %>
     <% end %>
     </div>
+
+
+    <!-- Begin MailChimp Signup Form --><div id="signup-form">
+    <form action="http://ruhoh.us1.list-manage.com/subscribe/post?u=af7ae466c004441192ef9e2c5&amp;id=dd36395f1e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div class="mc-field-group">
+      <label for="mce-EMAIL">Subscribe to New Course Alerts</label>
+      <br><input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="name@email.com">
+      <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+    </div>
+      <div id="mce-responses" class="clear">
+        <div class="response" id="mce-error-response" style="display:none"></div>
+        <div class="response" id="mce-success-response" style="display:none"></div>
+      </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;"><input type="text" name="b_af7ae466c004441192ef9e2c5_dd36395f1e" tabindex="-1" value=""></div>
+    </form>
+    </div><!--End signup-form-->
 
     <script>document.getElementById('world').innerHTML = '';</script>
     <%= javascript_include_tag "application" %>

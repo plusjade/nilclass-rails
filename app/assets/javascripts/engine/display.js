@@ -2,6 +2,8 @@
 var Display = (function() {
     // Public. update the UI with a graph.
     function update(graph) {
+        updateBreadCrumb(graph);
+
         Plot.nodes(graph);
         var nodes = d3.values(graph.dict);
 
@@ -99,6 +101,14 @@ var Display = (function() {
         link.exit().remove();
 
         return link;
+    }
+
+    function updateBreadCrumb(graph) {
+        var current = graph.meta('index') + 1;
+        var count = 'Step <em>'+ current + '</em> of ' + graph.meta('total');
+        d3.select('#step span').html(graph.meta('title'));
+        d3.select('#steps-count span').html(count);
+        d3.select('#signup-form').classed('active', current === graph.meta('total'));
     }
 
     function rootCoord() {

@@ -16,16 +16,26 @@ var Courses = function(CourseData) {
 
         courses.exit().remove();
 
-        d3.select('#courses .courses').on('click', function() {
+        d3.select('#courses-toggle').on('click', function() {
             d3.event.preventDefault();
             var node = d3.select('#courses');
 
             node.classed('active', !node.classed('active'));
         })
+
+
+        d3.select('#steps-count').on('click', function() {
+            d3.event.preventDefault();
+            var node = d3.select('#table-of-contents');
+
+            node.classed('active', !node.classed('active'));
+        })
+
+
     }
 
     function update(d) {
-        d3.select('#courses .title h2').html(d.name);
+        d3.select('#course-title h2').html(d.name);
     }
 
     initialize();
