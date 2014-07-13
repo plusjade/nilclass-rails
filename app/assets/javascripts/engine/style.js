@@ -6,9 +6,7 @@ var Style = {
                 return 65;
             })
             .attr("text-anchor", function(d) { return d['text-anchor'] || 'middle' })
-            .text(function(d) { return d.text })
-            .style("font-size", 12)
-            .style("fill-opacity", 1);
+            .text(function(d) { return d.text });
     }
 
     ,
@@ -58,11 +56,7 @@ var Style = {
                 return d.depth > 0 ? 35 : 45;
             })
             .attr("text-anchor", "middle")
-            .text(function(d) { return d.name || d.id })
-            .style("font-size", function(d) { 
-                return d.depth > 0 ? '10px' : '14px';
-            })
-            .style("fill-opacity", 1);
+            .text(function(d) { return d.name || d.id });
     }
 
     ,
