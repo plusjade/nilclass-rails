@@ -16,6 +16,7 @@ group :development do
   gem 'capistrano', '~> 3.2.0', require: false
   gem 'capistrano-rails',   '~> 1.1', require: false
   gem 'capistrano-bundler', '~> 1.1', require: false
+  gem 'quiet_assets'
 end
 
 group :test do
