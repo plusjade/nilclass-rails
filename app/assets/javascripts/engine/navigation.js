@@ -1,37 +1,30 @@
-var Navigation = {
-    current : 0
-    , 
-    node : d3.select('#prev-next')
+var Navigation = function(selector) {
+    var d3Container = d3.select(selector),
+        tableOfContentsSelector = '#table-of-contents',
+        current = 0;
 
-    , 
-    render : function() {
-        var self = this;
-        this.node
-            .selectAll('a.next')
-                .on('click', function() {
-                    d3.event.preventDefault();
-                    self.next();
-                })
+    this.next = next;
+    this.previous = previous;
+    this.update = update;
 
-        this.node
-            .selectAll('a.prev')
-                .on('click', function() {
-                    d3.event.preventDefault();
-                    self.previous();
-                })
+    function next () {
+        navigate(current+1);
     }
 
-    ,
-    update : function(steps, index) {
-        var self = this;
-        this.current = index || 0;
+    function previous() {
+        navigate(current-1);
+    }
+
+    // Update table of contents with the latest steps.
+    function update(steps, index) {
+        current = index || 0;
 
         steps.forEach(function(d, i) {
             d.active = (i === index);
         })
 
-        var nodes = d3.select('#table-of-contents > ol').selectAll('li')
-                    .data(steps, function(d){ return d.name })
+        var nodes = d3.select(tableOfContentsSelector + '> ol').selectAll('li')
+                    .data(steps, function(d){ return d.slug })
                     .classed('active', function(d) { return d.active })
 
         nodes.enter()
@@ -41,21 +34,33 @@ var Navigation = {
                 .html(function(d) { return d.title })
                 .on('click', function(d, i) {
                     d3.event.preventDefault();
-                    self.navigate(i);
-                    d3.select('#table-of-contents').classed('active', false);
+                    navigate(i);
+                    d3.select(tableOfContentsSelector).classed('active', false);
                 })
 
         nodes.exit().remove();
     }
 
-    ,
-    // Internal. Prgramatically navigate to step at index.
-    navigate : function(index) {
-        var self = this;
+    function initialize() {
+        d3Container.select('a.next')
+            .on('click', function() {
+                d3.event.preventDefault();
+                next();
+            })
+
+        d3Container.select('a.prev')
+            .on('click', function() {
+                d3.event.preventDefault();
+                previous();
+            })
+    }
+
+    // Prgramatically navigate to step at index.
+    function navigate(index) {
         World.diagram.getBounded(index, function(graph) {
             Display.update(graph);
-            self.current = graph.meta('index');
-            self.highlight(self.current);
+            current = graph.meta('index');
+            highlight(current);
             if (graph.meta('slug')) {
                 var url = window.location.pathname.split('/');
                 // (4 slots)
@@ -68,20 +73,11 @@ var Navigation = {
         })
     }
 
-    ,
-    next : function() {
-        this.navigate(this.current+1);
-    }
-
-    ,
-    previous : function() {
-        this.navigate(this.current-1);
-    }
-
-    ,
-    highlight : function(index) {
-        d3.select('#table-of-contents > ol').selectAll('li')
+    function highlight(index) {
+        d3.select(tableOfContentsSelector + '> ol').selectAll('li')
             .classed('active', false)
             .filter(':nth-child('+ (index+1) +')').classed('active', true);
     }
+
+    initialize();
 }

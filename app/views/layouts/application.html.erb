@@ -384,9 +384,9 @@
 
       World.diagram.getByStepName(stepName, function(graph) {
           Display.update(graph);
-          Navigation.render();
+          World.navigation = new Navigation('#prev-next');
           World.diagram.steps(function(steps) {
-              Navigation.update(steps, graph.meta('index'));
+              World.navigation.update(steps, graph.meta('index'));
           })
       })
       <%= yield :page_javascripts %>

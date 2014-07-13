@@ -52,9 +52,9 @@ World.page = new Page("#description");
 d3.select("body")
     .on("keydown", function(){
         if(d3.event.keyCode === 39) // right arrow
-            Navigation.next();
+            World.navigation.next();
         else if(d3.event.keyCode === 37) // left arrow
-            Navigation.previous()
+            World.navigation.previous();
     })
 
 
