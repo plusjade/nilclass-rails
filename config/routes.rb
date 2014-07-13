@@ -5,5 +5,5 @@ Narly::Application.routes.draw do
     end
   end
 
-  root :to => 'courses#index'
+  root to: redirect('/courses/how-websites-work')
 end
