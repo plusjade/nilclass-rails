@@ -37,9 +37,7 @@ var Plot = function() {
             var paths = [graph.metaItems('focusPath')];
         } else if (graph.meta('focusPaths')) {
             var paths = graph.meta('focusPaths').map(function(path) {
-                return path.map(function(name) {
-                    return graph.find(name);
-                })
+                return graph.findAll(path);
             })
         }
 

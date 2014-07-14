@@ -43,11 +43,7 @@ var Graph = function(items) {
 
     // Get items mappped from a meta attribute holding item ids.
     this.metaItems = function(key) {
-        var self = this;
-
-        return coerceArray(this.meta(key)).map(function(name) {
-            return self.find(name);
-        })
+        return this.findAll(this.meta(key));
     }
 
     // Get an item.
@@ -69,6 +65,14 @@ var Graph = function(items) {
             throw "Could not find item using id: " + key;
         }
     }
+
+    this.findAll = function(keys) {
+        var self = this;
+
+        return coerceArray(keys).map(function(name) {
+            return self.find(name);
+        })
+    };
 
     // Delete an item.
     this.delete = function(key) {
