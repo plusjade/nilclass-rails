@@ -12,7 +12,9 @@ var Plot = function() {
         return graph;
     }
 
-    function links(graph) {
+    // @return[Array] link objects for all connections in a graph.
+    // For use with d3.svg.diagonal().
+    function diagonalConnectionLinks(graph) {
         var links = [];
 
         for(key in graph.dict) {
@@ -29,7 +31,8 @@ var Plot = function() {
         return links;
     }
 
-    function focusPath(graph) {
+    // @return[Array] link data for building lines with d3.svg.diagonal().
+    function diagonalFocusPathLinks(graph) {
         var links = [],
             paths = [];
 
@@ -42,14 +45,23 @@ var Plot = function() {
         }
 
         paths.forEach(function(path) {
-            path.forEach(function(d, i) {
-                if(path[i+1]) {
-                    links.push({
-                        source: d,
-                        target: path[i+1]
-                    });
-                }
-            })
+            links = links.concat(diagonalPathLinks(path));
+        })
+
+        return links;
+    }
+
+    // @param[Array] path - ordered item objects denoting desired path.
+    // @return[Array] link objects for the path for use with d3.svg.diagonal().
+    function diagonalPathLinks(path) {
+        var links = [];
+        path.forEach(function(d, i) {
+            if(path[i+1]) {
+                links.push({
+                    source: d,
+                    target: path[i+1]
+                });
+            }
         })
 
         return links;
@@ -75,7 +87,6 @@ var Plot = function() {
 
         return graph;
     }
-
 
     // parses grid statements to determine relative coordinate offset.
     // Example:
@@ -121,7 +132,8 @@ var Plot = function() {
     // Public API
     return {
         nodes : nodes,
-        links : links,
-        focusPath : focusPath
+        diagonalConnectionLinks : diagonalConnectionLinks,
+        diagonalFocusPathLinks : diagonalFocusPathLinks,
+        diagonalPathLinks : diagonalPathLinks
     };
 }();

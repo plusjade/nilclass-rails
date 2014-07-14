@@ -3,25 +3,16 @@ var Display = (function() {
     // Public. update the UI with a graph.
     function update(graph) {
         updateBreadCrumb(graph);
+        World.page.show(graph.meta('content'));
 
         Plot.nodes(graph);
         var nodes = d3.values(graph.dict);
 
+        updateLinks(Plot.diagonalConnectionLinks(graph), 'connect');
+
+        updateLivePaths(Plot.diagonalFocusPathLinks(graph), 'focusPath');
+
         updateNodes(nodes);
-
-        World.page.show(graph.meta('content'));
-
-        updateLinks(Plot.links(graph), 'connect');
-
-        updateLinks(Plot.focusPath(graph), 'focusPath')
-            .transition()
-                .duration(World.duration)
-                .style('stroke-opacity', 1)
-                .style('stroke-width', 4)
-            .transition()
-                .duration(World.duration)
-                .style('stroke-width', 2)
-
 
         World.container.selectAll("g.node")
             .data(graph.metaItems('focus'), function(d) { return d._id })
@@ -73,10 +64,14 @@ var Display = (function() {
 
         nodeExit.select("circle").attr("r", 1);
         nodeExit.select("text").style("fill-opacity", 1);
+
+        return node;
     }
 
+    // Update link connections between items.
+    // @param[Array] linkData - formated linkData for d3.
+    // @param[String] namespace - used to preserve grouping and uniqueness.
     function updateLinks(linkData, namespace) {
-        var root = rootCoord();
         var classname = 'link-' + namespace;
         // Update the links.
         var link = World.container.selectAll("path." + classname)
@@ -101,6 +96,68 @@ var Display = (function() {
         link.exit().remove();
 
         return link;
+    }
+
+    // Similar to updateLinks but adds animated directional flow icons.
+    // @param[Array] linkData - formated linkData for d3.
+    // @param[String] namespace - used to preserve grouping and uniqueness.
+    function updateLivePaths(linkData, namespace) {
+        var pathData = updateLinks(linkData, namespace)
+            .call(Style.pulsePath)
+
+        updateFlowIcons(linkData, pathData[0], namespace);
+
+        return pathData;
+    }
+
+    // @param[Array] linkData - formated linkData for d3.
+    // @param[Array] paths - actual SVG path DOM nodes required.
+    // @param[String] namespace - used to preserve grouping and uniqueness.
+    function updateFlowIcons(linkData, paths, namespace) {
+        var markerData = [];
+        paths.map(function(d, i) {
+            if(d) {
+                markerData.push({
+                    path: d,
+                    x : linkData[i].source.x,
+                    y : linkData[i].source.y,
+                    _id : (linkData[i].source._id + linkData[i].target._id + namespace)
+                });
+            }
+        });
+
+        var markers = World.container.selectAll("g." + namespace)
+                        .data(markerData, function(d) { return d._id });
+
+        var markersEnter = markers.enter().append("svg:g")
+            .attr('class', namespace + ' flow-icon')
+            .attr("transform", function(d) {
+                return "translate(" + (d.x) + "," + (d.y) + ")";
+            })
+            .append('use')
+                .attr('x', -10)
+                .attr('y', -10)
+                .attr('xlink:href', '#flow-icon')
+                .attr('height', 20)
+                .attr('width', 20);
+
+        markers.transition()
+            .delay(400)
+            .duration(1500)
+            .attrTween("transform", function(d) {
+                var l = d.path.getTotalLength()/2; // mid-point
+                  return function(t) {
+                    var p = d.path.getPointAtLength(t * l);
+                    return "translate(" + p.x + "," + p.y + ")";
+                  };
+            })
+
+        markers.exit().transition()
+            .duration(World.duration)
+            .style("fill-opacity", 0)
+            .remove();
+
+        return markers;
     }
 
     function updateBreadCrumb(graph) {

@@ -113,4 +113,18 @@ var Style = {
 
         return nodes;
     }
+
+    ,
+    pulsePath : function(nodes) {
+        nodes
+            .transition()
+                .duration(World.duration)
+                .style('stroke-opacity', 1)
+                .style('stroke-width', 4)
+            .transition()
+                .duration(World.duration)
+                .style('stroke-width', 2)
+
+        return nodes;
+    }
 }
