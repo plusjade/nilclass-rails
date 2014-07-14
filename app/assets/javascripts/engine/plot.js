@@ -17,10 +17,12 @@ var Plot = function() {
 
         for(key in graph.dict) {
             graph.connections(key).forEach(function(id) {
-                links.push({
-                    source: graph.find(key),
-                    target: graph.find(id)
-                });
+                if(graph.get(key) && graph.get(id)) {
+                    links.push({
+                        source: graph.find(key),
+                        target: graph.find(id)
+                    });
+                }
             })
         }
 
