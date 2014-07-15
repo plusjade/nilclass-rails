@@ -27,6 +27,10 @@ var Style = {
     }
     ,
     software : function(nodes) {
+        nodes.append('circle')
+            .attr('class', 'icon-bg')
+            .attr('r', 14)
+
         nodes.append("svg:circle")
             .attr('class', 'software')
             .attr("r", 7);
@@ -37,9 +41,11 @@ var Style = {
     }
     ,
     icon : function(nodes) {
+        nodes.append('circle')
+            .attr('class', 'icon-bg')
+            .attr('r', 14)
+
         nodes.append('g').append('use')
-            .attr('x', -15)
-            .attr('y', -15)
             .attr('xlink:href', function(d) { return '#' + d.icon })
             .attr('class', function(d) { return "icon " + d.icon })
             .attr('height', function(d) {
