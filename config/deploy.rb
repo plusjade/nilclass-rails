@@ -2,16 +2,17 @@
 lock '3.2.0'
 
 set :application, 'narly'
-set :repo_url, 'git@github.com:plusjade/narly.io.git'
+set :repo_url, 'git@github.com:plusjade/nilclass.git'
 set :user, "ruhoh"
 set :deploy_via, :remote_cache
 set :git_shallow_clone, 1
+set :branch, "master"
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
 # Default deploy_to directory is /var/www/my_app
-set :deploy_to, '/home/ruhoh/narly.io-cap'
+set :deploy_to, '/home/ruhoh/app.nilclass.com'
 
 # Default value for :scm is :git
 # set :scm, :git
@@ -37,7 +38,7 @@ set :deploy_to, '/home/ruhoh/narly.io-cap'
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-set :bundle_flags, '--deployment --quiet'
+set :bundle_flags, '--deployment'
 
 namespace :deploy do
 
