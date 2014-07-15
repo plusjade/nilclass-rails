@@ -114,42 +114,12 @@ The web application can do work <em>on demand</em> like reading from a template 
 This means web pages don't actually have to exist, a software program can create them as needed.
 
 
-
-# Reverse Proxy
+# Database
 {
     "diagramStep" : "database",
     "focus" : "Database",
     "focusPath" : ["You", "Laptop", "Internet", "Server", "Web Server", "Application", "Database"]
 }
-
-
-A dedicated app-server can handle <em>more</em> requests but ultimately still has physical limits.
-Generally, the more concurrent requests a server has the slower <em>each</em> request will be.
-
-If one app-server can handle 1,000 requests, then two app-servers can handle 2,000 requests.
-
-
-It's possible to add additional app-servers to share the request load.
-
-To do this we first need to add a <strong>reverse-proxy server</strong> that can delegate or <em>proxy</em> the requests across multiple app-servers.
-
-The reverse-proxy is inserted <em>before</em> our app-server so requests go directly to the reverse-proxy.
-
-The reverse-proxy runs its own web-server software but it is configured to route requests to <em>other servers</em>.
-
-[More]
-
-<a href="http://stackoverflow.com/a/366212/101940">http://stackoverflow.com/a/366212/101940</a>
-
-
-
-# Database
-{
-    "diagramStep" : "dedicated-database",
-    "focus" : "Database Server",
-    "focusPath" : ["You", "Laptop", "Internet", "Server", "Web Server", "Application", "Database Server"]
-}
-
 
 A web application can interact with a **database**: a software program installed on the server that helps with efficiently storing and accessing data.
 
@@ -168,17 +138,41 @@ Now if you want change the product template, you only have to change one file. =
 
 # Database Server
 {
-    "diagramStep" : "reverse-proxy",
-    "focus" : "Reverse Proxy",
-    "focusPath" : ["You", "Laptop", "Internet", "Reverse Proxy", "Server"]
+    "diagramStep" : "dedicated-database",
+    "focus" : "Database Server",
+    "focusPath" : ["You", "Laptop", "Internet", "Server", "Web Server", "Application", "Database Server"]
 }
-
 
 Up until this point, all our software programs have been running on <em>one</em> physical server. But each server has physical limits in how many requests it can handle.
 
 To handle more requests, or <em>scale</em> your application, the first thing you can do is move your database software to its own <strong>dedicated database server</strong>.
 
 Now your app server can concentrate on serving web-requests, while your database-server gets more computing power to manage the database.
+
+# Reverse Proxy
+{
+    "diagramStep" : "reverse-proxy",
+    "focus" : "Reverse Proxy",
+    "focusPath" : ["You", "Laptop", "Internet", "Reverse Proxy", "Server"]
+}
+
+A dedicated app-server can handle <em>more</em> requests but ultimately still has physical limits.
+Generally, the more concurrent requests a server has the slower <em>each</em> request will be.
+
+If one app-server can handle 1,000 requests, then two app-servers can handle 2,000 requests.
+
+
+It's possible to add additional app-servers to share the request load.
+
+To do this we first need to add a <strong>reverse-proxy server</strong> that can delegate or <em>proxy</em> the requests across multiple app-servers.
+
+The reverse-proxy is inserted <em>before</em> our app-server so requests go directly to the reverse-proxy.
+
+The reverse-proxy runs its own web-server software but it is configured to route requests to <em>other servers</em>.
+
+[More]
+
+<a href="http://stackoverflow.com/a/366212/101940">http://stackoverflow.com/a/366212/101940</a>
 
 
 # Multi-app Architecture
