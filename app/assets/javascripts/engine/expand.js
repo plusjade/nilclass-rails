@@ -2,7 +2,6 @@ function Expand(steps) {
     var items = {
         "icon" : {
             "item": "icon",
-            "name": "icon",
             "icon": "icon"
         }
         ,
