@@ -101,11 +101,12 @@ var Display = (function() {
     // Similar to updateLinks but adds animated directional flow icons.
     // @param[Array] linkData - formated linkData for d3.
     // @param[String] namespace - used to preserve grouping and uniqueness.
-    function updateLivePaths(linkData, namespace) {
+    // @param[Boolean] reverse - set true to reverse animation direction.
+    function updateLivePaths(linkData, namespace, reverse) {
         var pathData = updateLinks(linkData, namespace)
             .call(Style.pulsePath)
 
-        updateFlowIcons(linkData, pathData[0], namespace);
+        updateFlowIcons(linkData, pathData[0], namespace, reverse);
 
         return pathData;
     }
@@ -113,14 +114,18 @@ var Display = (function() {
     // @param[Array] linkData - formated linkData for d3.
     // @param[Array] paths - actual SVG path DOM nodes required.
     // @param[String] namespace - used to preserve grouping and uniqueness.
-    function updateFlowIcons(linkData, paths, namespace) {
+    function updateFlowIcons(linkData, paths, namespace, reverse) {
         var markerData = [];
         paths.map(function(d, i) {
             if(d) {
+                var slope = (linkData[i].target.y - linkData[i].source.y)/
+                                (linkData[i].target.x - linkData[i].source.x);
+                // this coincides with the transform(rotate()) format (clockwise degrees)
+                var degree = Math.atan(slope) * (180/Math.PI);
                 markerData.push({
                     path: d,
-                    x : linkData[i].source.x,
-                    y : linkData[i].source.y,
+                    degree : degree,
+                    reverse : reverse,
                     _id : (linkData[i].source._id + linkData[i].target._id + namespace)
                 });
             }
@@ -131,15 +136,15 @@ var Display = (function() {
 
         var markersEnter = markers.enter().append("svg:g")
             .attr('class', namespace + ' flow-icon')
-            .attr("transform", function(d) {
-                return "translate(" + (d.x) + "," + (d.y) + ")";
-            })
             .append('use')
-                .attr('x', -10)
-                .attr('y', -10)
                 .attr('xlink:href', '#flow-icon')
                 .attr('height', 20)
-                .attr('width', 20);
+                .attr('width', 20)
+                .attr('x', -10)
+                .attr('y', -10)
+                .attr('transform', function(d) {
+                    return 'rotate(' + (d.degree + (d.reverse ? 180 : 0)) + ')';
+                });
 
         markers.transition()
             .delay(400)
@@ -147,7 +152,11 @@ var Display = (function() {
             .attrTween("transform", function(d) {
                 var l = d.path.getTotalLength()/2; // mid-point
                   return function(t) {
-                    var p = d.path.getPointAtLength(t * l);
+                    var offset = t * l;
+                    if (d.reverse) {
+                        offset = d.path.getTotalLength() - offset;
+                    }
+                    var p = d.path.getPointAtLength(offset);
                     return "translate(" + p.x + "," + p.y + ")";
                   };
             })
