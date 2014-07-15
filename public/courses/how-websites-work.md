@@ -187,7 +187,8 @@ Now your app server can concentrate on serving web-requests, while your database
     "focus" : ["Server", "Server (clone 1)", "Server (clone 2)"],
     "focusPaths" : [
         ["You", "Laptop", "Internet", "Reverse Proxy", "Server"],
-        ["Server (clone 1)", "Reverse Proxy", "Server (clone 2)"]
+        ["Reverse Proxy", "Server (clone 1)"],
+        ["Reverse Proxy", "Server (clone 2)"]
     ]
 }
 
