@@ -4,6 +4,13 @@
     font-family: courier;
     fill: #455a64;
     fill-opacity: 1;
+    &.text-bg {
+      fill : none;
+      stroke: #FBF8F5;
+      strok-opacity: 1;
+      stroke-width: 6;
+      stroke-linejoin: round;
+    }
   }
   use {
     pointer-events: all;

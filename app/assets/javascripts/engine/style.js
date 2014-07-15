@@ -1,12 +1,17 @@
 var Style = {
     text : function(nodes) {
-        return nodes
-            .append("svg:text")
-            .attr("dy", function(d) {
-                return 65;
-            })
+        nodes.append("svg:text")
+                .attr('class', 'text-bg')
+                .attr("dy", 65)
+                .attr("text-anchor", function(d) { return d['text-anchor'] || 'middle' })
+                .text(function(d) { return d.text });
+
+        nodes.append("svg:text")
+            .attr("dy", 65)
             .attr("text-anchor", function(d) { return d['text-anchor'] || 'middle' })
             .text(function(d) { return d.text });
+
+        return nodes;
     }
 
     ,
@@ -50,13 +55,18 @@ var Style = {
     }
     ,
     labels : function(nodes) {
-        return nodes
-            .append("svg:text")
-            .attr("dy", function(d) {
-                return d.depth > 0 ? 35 : 45;
-            })
-            .attr("text-anchor", "middle")
-            .text(function(d) { return d.name || d.id });
+        nodes.append("svg:text")
+                .attr('class', 'text-bg')
+                .attr("dy", 45)
+                .attr("text-anchor", "middle")
+                .text(function(d) { return d.name || d.id })
+
+        nodes.append("svg:text")
+                .attr("dy", 45)
+                .attr("text-anchor", "middle")
+                .text(function(d) { return d.name || d.id });
+
+        return nodes;
     }
 
     ,
