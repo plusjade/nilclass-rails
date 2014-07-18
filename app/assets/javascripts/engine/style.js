@@ -1,5 +1,6 @@
 var Style = {
     text : function(nodes) {
+        return nodes;
         nodes.append("svg:text")
                 .attr('class', 'text-bg')
                 .attr("dy", 65)
@@ -105,7 +106,6 @@ var Style = {
             .transition()
                 .duration(World.duration)
                 .attr('r', 16)
-
 
         nodes.exit().selectAll("circle.software").transition()
             .duration(World.duration)

@@ -12,6 +12,21 @@ World.container = World.wrap
     .append("svg:g")
         .attr("transform", "translate(0,0)")
 
+
+World.container.append('g').attr('class','group-connect');
+World.container.append('g')
+    .attr('class','group-focusPath')
+    .attr("transform", function(d) {
+        return "translate(0,-6)";
+    })
+World.container.append('g')
+    .attr('class','group-focusPath-reverse')
+    .attr("transform", function(d) {
+        return "translate(0,6)";
+    })
+
+World.container.append('g').attr('class','group-overlay');
+
 World.zoom = d3.behavior.zoom()
                 .scaleExtent([0.5, 2.5])
                 .on("zoom", function() {

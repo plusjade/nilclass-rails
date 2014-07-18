@@ -2,8 +2,10 @@
 var Display = (function() {
     // Public. update the UI with a graph.
     function update(graph) {
+        updateLivePaths([], 'overlay'); // clear
+
         updateBreadCrumb(graph);
-        World.page.show(graph.meta('content'));
+        World.page.show(graph);
 
         Plot.nodes(graph);
         var nodes = d3.values(graph.dict);
@@ -11,6 +13,8 @@ var Display = (function() {
         updateLinks(Plot.diagonalConnectionLinks(graph), 'connect');
 
         updateLivePaths(Plot.diagonalFocusPathLinks(graph), 'focusPath');
+        updateLivePaths(Plot.diagonalFocusPathLinks(graph), 'focusPath-reverse', true);
+
 
         updateNodes(nodes);
 
@@ -74,11 +78,11 @@ var Display = (function() {
     function updateLinks(linkData, namespace) {
         var classname = 'link-' + namespace;
         // Update the links.
-        var link = World.container.selectAll("path." + classname)
+        var link = World.container.select('g.group-' + namespace).selectAll("path." + classname)
             .data(linkData, function(d) { return d.source._id + '.' + d.target._id; });
 
         // Enter any new links at the parent's previous position.
-        var linkEnter = link.enter().insert("svg:path", "g")
+        var linkEnter = link.enter().append("svg:path")
             .style('stroke-opacity', 0)
             .attr("class", function(d) {
                 return (d.source.public && d.target.public)
@@ -115,7 +119,7 @@ var Display = (function() {
     // @param[Array] paths - actual SVG path DOM nodes required.
     // @param[String] namespace - used to preserve grouping and uniqueness.
     function updateFlowIcons(linkData, paths, namespace, reverse) {
-        var markerData = [];
+        var markerData = [], markers;
         paths.map(function(d, i) {
             if(d) {
                 var slope = (linkData[i].target.y - linkData[i].source.y)/
@@ -123,6 +127,8 @@ var Display = (function() {
                 // this coincides with the transform(rotate()) format (clockwise degrees)
                 var degree = Math.atan(slope) * (180/Math.PI);
                 markerData.push({
+                    x: linkData[i].source.x,
+                    y: linkData[i].source.y,
                     path: d,
                     degree : degree,
                     reverse : reverse,
@@ -131,11 +137,16 @@ var Display = (function() {
             }
         });
 
-        var markers = World.container.selectAll("g." + namespace)
-                        .data(markerData, function(d) { return d._id });
+        markers = World.container
+                        .select('g.group-' + namespace).selectAll("g." + namespace)
+                            .data(markerData, function(d) { return d._id });
 
-        var markersEnter = markers.enter().append("svg:g")
+        // ENTER
+        markers.enter().append("svg:g")
             .attr('class', namespace + ' flow-icon')
+            .attr('transform', function(d) {
+                return 'translate('+ d.x +','+ d.y +')';
+            })
             .append('use')
                 .attr('xlink:href', '#flow-icon')
                 .attr('height', 20)
@@ -146,9 +157,11 @@ var Display = (function() {
                     return 'rotate(' + (d.degree + (d.reverse ? 180 : 0)) + ')';
                 });
 
+        // UPDATE
         markers.transition()
             .delay(400)
             .duration(1500)
+            .style('display', 'block')
             .attrTween("transform", function(d) {
                 var l = d.path.getTotalLength()/2; // mid-point
                   return function(t) {
@@ -161,10 +174,8 @@ var Display = (function() {
                   };
             })
 
-        markers.exit().transition()
-            .duration(World.duration)
-            .style("fill-opacity", 0)
-            .remove();
+        // EXIT
+        markers.exit().remove();
 
         return markers;
     }
@@ -181,6 +192,7 @@ var Display = (function() {
     }
 
     return ({
-        update : update
+        update : update,
+        updateLivePaths : updateLivePaths
     })
 })();

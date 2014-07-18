@@ -278,15 +278,20 @@ body {
   right:20px;
   background-color: #FFF;
   box-shadow: 0 0 4px 0 #ccc;
-  div {
-    padding: 0 10px;
+  i {
+    display: block;
     font-size: 14px;
     line-height: 28px;
+    min-height: 28px;
+    min-width: 10px;
+    padding: 0 10px;
     color: #777;
     cursor: pointer;;
+
     &:first-child {
       border-bottom: 1px solid #eee;
     }
+
     &:hover {
       color: #333;
     }

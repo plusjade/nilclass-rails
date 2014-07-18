@@ -54,22 +54,6 @@ line {
   stroke-width: 1.5px;
 }
 
-path {
-  &.link-connect {
-    fill: none;
-    stroke: #CCC;
-    stroke-width: 1.5px;
-    stroke-dasharray: 3, 3;
-    &.public {
-      stroke: #A0C55F;
-    }
-  }
-  &.link-focusPath {
-    fill: none;
-    stroke: #1C9EDB;
-    stroke-width: 2px;
-  }
-}
 
 .icon {
   fill: #333;
@@ -89,12 +73,67 @@ path {
     fill: #FA3C08;
   }
   &.endpoint {
-    fill: #444;
+    fill: #607d8b;
   }
   &.exchange {
     fill: #777;
   }
 }
+
+/*flow path stuff*/
 .flow-icon {
+  display: none;
+  fill: green;
+  &.overlay {
+    fill : orange;
+  }
+}
+.group-connect {
+  path {
+    fill: none;
+    stroke: #CCC;
+    stroke-width: 1.5px;
+    stroke-dasharray: 3, 3;
+    &.public {
+      stroke: #A0C55F;
+    }
+  }
+}
+.group-overlay {
+  .flow-icon {
+    fill : orange;
+  }
+  path {
+    fill: none;
+    stroke: orange;
+    stroke-width: 2px;
+  }
+}
+.group-focusPath {
+  .flow-icon {
+    fill: #1C9EDB;
+  }
+
+  path {
+    fill: none;
+    stroke: #1C9EDB;
+    stroke-width: 2px;
+  }
+}
+.group-focusPath-reverse {
+  .flow-icon {
+    fill: #81d4fa;
+  }
+  path {
+    fill: none;
+    stroke: #81d4fa;
+    stroke-width: 2px;
+  }
+}
+
+#flow-path {
   fill: #1C9EDB;
+  path {
+    fill: #1C9EDB;
+  }
 }
