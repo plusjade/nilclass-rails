@@ -358,7 +358,7 @@
     <script>document.getElementById('world').innerHTML = '';</script>
     <%= javascript_include_tag "application" %>
     <script>
-      var courses = new Courses(<%= Course.all.to_json.html_safe %>);
+      var courses = new Courses(<%= Course.all(:published).to_json.html_safe %>);
       var course = <%= Course.find(@course.name).to_json.html_safe %>;
 
       World.diagram = new Diagram(course.url);
