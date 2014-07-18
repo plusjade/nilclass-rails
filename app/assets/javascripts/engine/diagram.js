@@ -200,6 +200,6 @@ var Diagram = function(endpoint) {
     }
 
     function dataEndpoint(diagram) {
-        return '/diagrams/' + diagram + '.json?' + Math.random();
+        return '/courses-data/' + endpoint + '/diagram.json?' + Math.random();
     }
 }

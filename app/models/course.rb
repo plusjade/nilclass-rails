@@ -6,7 +6,7 @@ class Course
     raise "Name can't be blank" if name.blank?
 
     @name = name
-    @content_path = Rails.root.join('public','courses', "#{ name }.md")
+    @content_path = Rails.root.join('public','courses-data', name, "content.md")
 
     raise NotFound, "File does not exist: #{@content_path}" unless File.exist? @content_path
   end
@@ -19,18 +19,26 @@ class Course
     @readme ||= Readme.new( File.open(@content_path).read )
   end
 
-  Dict = {
-    "how-websites-work" => {
-        "name" => "How Websites Work.",
-        "url" => "how-websites-work"
-    }
-  }
-
-  def self.all
-    Dict.values
+  def self.all(type = nil)
+    FileUtils.cd(Rails.root.join('public','courses-data')) do
+      return Dir['*']
+              .select { |path|
+                File.directory?(path) &&
+                  ((type.to_s == "published") ?
+                       !path.starts_with?('draft-') :
+                       true
+                  )
+              }
+              .map do |name|
+                {
+                  "url" => name,
+                  "name" => name.titleize
+                }
+              end
+    end
   end
 
-  def self.find(name)
-    Dict[name]
+  def self.find(url)
+    all.find { |a| a["url"] == url }
   end
 end
