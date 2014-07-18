@@ -1,3 +1,7 @@
+$background-color: #FFF;
+$primary-border-color: #ccc;
+$alt-background-color: #FBF8F5;
+
 .node {
   text {
     font-size: 12px;
@@ -6,7 +10,7 @@
     fill-opacity: 1;
     &.text-bg {
       fill : none;
-      stroke: #FBF8F5;
+      stroke: $background-color;
       strok-opacity: 1;
       stroke-width: 6;
       stroke-linejoin: round;
@@ -39,7 +43,7 @@
       }
     }
     &.icon-bg {
-      fill: #FBF8F5;
+      fill: $background-color;
       stroke: none;
     }
   }

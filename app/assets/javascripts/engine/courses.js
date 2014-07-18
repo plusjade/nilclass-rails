@@ -3,7 +3,6 @@ var Courses = function(CourseData) {
     this.data = function() {
         return CourseData;
     }
-    this.update = update;
 
     function initialize() {
         var courses = d3.select('#courses ul').selectAll('li')
@@ -32,10 +31,6 @@ var Courses = function(CourseData) {
         })
 
 
-    }
-
-    function update(d) {
-        d3.select('#course-title h2').html(d.name);
     }
 
     initialize();
