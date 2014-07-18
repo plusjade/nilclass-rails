@@ -7,7 +7,7 @@ var Plot = function() {
     // This means determing x and y coordinates relative to each node.
     // Note this is mutable service, it mutates the graph.
     function nodes(graph) {
-        walk(graph, graph._root, { "x" : 70, "y" : 180 });
+        walk(graph, graph._root, { "x" : 50, "y" : 50 });
 
         return graph;
     }

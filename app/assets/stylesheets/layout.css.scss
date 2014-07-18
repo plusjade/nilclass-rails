@@ -1,119 +1,72 @@
-/*http://www.google.com/design/spec/style/color.html#color-ui-color-palette*/
-/*background-color: #1C9EDB; blue */
-/*background-color: hsla(100, 52%, 47%, 1); green*/
-/* gold ffc107 */
+/*
+http://www.google.com/design/spec/style/color.html#color-ui-color-palette
+http://www.colorzilla.com/gradient-editor/
+*/
+$background-color: #FFF;
+$primary-border-color: #ccc;
+$alt-background-color: #212121;
 
+body {
+  background-color: $alt-background-color;
+  background: -moz-radial-gradient(center, ellipse cover,  rgba(33,33,33,0.8) 0%, rgba(0,0,0,1) 100%);
+  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(33,33,33,0.8)), color-stop(100%,rgba(0,0,0,1)));
+  background: -webkit-radial-gradient(center, ellipse cover,  rgba(33,33,33,0.8) 0%,rgba(0,0,0,1) 100%);
+  background: -o-radial-gradient(center, ellipse cover,  rgba(33,33,33,0.8) 0%,rgba(0,0,0,1) 100%);
+  background: -ms-radial-gradient(center, ellipse cover,  rgba(33,33,33,0.8) 0%,rgba(0,0,0,1) 100%);
+  background: radial-gradient(ellipse at center,  rgba(33,33,33,0.8) 0%,rgba(0,0,0,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc212121', endColorstr='#000000',GradientType=1 );
+}
 #top-bar {
   position: fixed;
   height: 40px;
   width: 100%;
   z-index: 10;
-  background-color: #fffde7;
   a {
     border-right: 1px solid #eee;
   }
 }
-#top-bar-spacer {
-  height: 40px;
-}
 
 #steps-wrap {
   position: absolute;
-  top:0;
-  left:28%;
-  height:40px;
-  line-height:40px;
+  left: 25%;
+  width: 50%;
+  bottom: 272px;
+  z-index: 21;
+  height:39px;
+  line-height:35px;
 }
-
 #steps-count {
-  position: relative;
-  background-color: #8bc34a;
-  padding:0 10px 0 30px;
+  position: absolute;
+  top:0;
+  right: -1px;
+  padding:0 10px 0 20px;
+  background-color:#FFF;
+  border-left:1px solid;
+  border-bottom:1px solid;
+  border-color: #EEE;
   height:40px;
   line-height:40px;
-  display: inline-block;
   cursor: pointer;
-  color:#FFF;
-  &:hover {
-    background-color: #263238;
-    color: #efefef;
-
-    svg {
-      fill: #263238;
-    }
-    em {
-      background-color: #37474f;
-    }
-  }
-  svg {
-    position:absolute;
-    top:-1px;
-    right:-30px;
-    height:40px;
-    width:40px;
-    fill: #8bc34a;
-  }
+  color: #616161;
   em {
     font-style: normal;
-    padding:2px 6px;
-    background-color: #7cb342;
-    border-radius: 60px;
+  }
+  &:hover {
+    background-color: #263238;
+    color: #e0e0e0;
   }
 }
-
-#step {
-  display: inline-block;
-  height:40px;
-  padding-left: 20px;
-  line-height:40px;
-  color: #555;
-  span {
-    display: inline-block;
-    padding:0 10px;
-  }
-}
-
-#course-title {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 28%;
-  z-index: 30;
-  height: 40px;
-  display: block;
-  background-color: #558b2f;
-  color: #FDFFFC;
-  > * {
-    line-height: 40px;
-    padding: 0 10px;
-    margin: 0;
-    font-size: 16px;
-    white-space: nowrap;
-    overflow: hidden;
-  }
-  svg {
-    position:absolute;
-    top:-1px;
-    right:-50px;
-    width:40px;
-    height:40px;
-    fill: #558b2f;
-  }
-}
-
 #courses-toggle {
   float: right;
   display: block;
   line-height: 40px;
   padding: 0 20px;
-  color: #1C9EDB;
+  color: #90a4ae;
   text-decoration: none;
-  border-left: 1px solid #fff59d;
   background-color: #FFF;
-  border-right: 0;
   &:hover {
-    color: #FFF;
-    background-color: #1C9EDB;
+    color: #efefef;
+    background-color: #263238;
   }
 }
 
@@ -142,8 +95,8 @@
       padding: 10px;
       border-bottom: 1px solid #eee;
       &:hover {
-        color: #FFF;
-        background-color: #1C9EDB;
+        color: #efefef;
+        background-color: #263238;
       }
     }
   }
@@ -151,34 +104,37 @@
 
 #world {
   position: absolute;
-  top:40px;
-  left:28%;
-  bottom:0;
+  top:0;
+  left:0;
+  height:500px;
   right:0;
-  background-color: #FBF8F5;
+  background-color: $background-color;
+  overflow: hidden;
+  border-bottom: 1px solid #111;
   > svg {
     width: 100%;
     height: 100%;
+    overflow: hidden;
   }
 }
 
 
 
 #table-of-contents {
-  z-index: 10;
-  position: fixed;
-  left: 28%;
-  top: 40px;
+  z-index: 50;
+  position: absolute;
+  left: 25%;
   bottom: 0;
-  width: 0;
-  background-color: #fefefe;
-  overflow: auto;
+  width:50%;
+  height:0;
+  background-color: #263238;
+  color: #efefef;
 
+  overflow: auto;
+  transition: height 0.5s;
   &.active {
-    width:28%;
-    border-top:1px solid;
-    border-right:1px solid;
-    border-color: #b0bec5;
+    height:270px;
+    border:1px solid #1d262a;
   }
 
   strong {
@@ -194,21 +150,18 @@
     counter-reset: chapter;
     min-width: 200px;
     li {
-      color: #555;
-      border-bottom: 1px solid #eee;
+      color: #aaa;
+      border-bottom: 1px solid #1d262a;
     }
   }
   li {
-    &:hover, &.active {
-      color: #FFF;
-    }
+    line-height: 38px;
     &:hover a, &.active a {
-      background-color: #263238;
-      color: #efefef;
+      background-color: #1d262a;
     }
     a {
       display: block;
-      padding: 7px 15px;
+      padding: 0 15px;
       text-decoration: none;
       color: inherit;
       font-size: inherit;
@@ -232,35 +185,35 @@
 
 #prev-next-wrap {
   position: absolute;
-  top:40px;
+  bottom:170px;
   left:0;
-  width:28%;
-  z-index: 21;
-  box-shadow: 0 -2px 4px 0px #ccc;
-  border-bottom: 1px solid #fff59d;
-  .divider {
-    position: absolute;
-    left: 50%;
-    width: 1px;
-    height:35px;
-    background-color: #fff59d;
-  }
+  width:100%;
 }
 #prev-next {
   width: 100%;
-  background-color: #fff9c4;
   margin: 0;
+  position:relative;
   a {
-    height: 35px;
-    width: 50%;
-    display: inline-block;
+    height: 40px;
+    font-size: 40px;
+    width: 100px;
+    display: block;
     text-align: center;
-    line-height: 35px;
-    color: #455a64;
+    line-height: 40px;
+    color: #424242;
     text-decoration: none;
+
+    &.prev {
+      position: absolute;
+      left:19%;
+    }
+
+    &.next {
+      position: absolute;
+      right:19%;
+    }
     &:hover {
-      background-color: #263238;
-      color: #efefef;
+      color: #e0e0e0;
     }
   }
 }
@@ -268,12 +221,12 @@
 
 #description {
   position: absolute;
-  top:75px;
   bottom: 0;
-  left: 0;
-  width: 28%;
+  left: 25%;
+  width: 50%;
+  height:310px;
   z-index: 20;
-  box-shadow: 0 0 4px 0px #ccc;
+  border: 1px solid $primary-border-color;
   overflow: auto;
   background-color: #FFF;
 

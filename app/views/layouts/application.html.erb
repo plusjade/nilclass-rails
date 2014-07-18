@@ -290,31 +290,45 @@
     </svg>
 
     <div id='top-bar'>
-      <div id="steps-wrap">
-        <div id="steps-count">
-          <svg xmlns="http://www.w3.org/2000/svg" version="1.1" data-icon="caret-right" data-container-transform="translate(4 0)" viewBox="0 0 16 16">
-            <path d="M0 0v16l8-8-8-8z" transform="translate(4)" />
-          </svg>
-
-          <span> </span>
-          <i class='fa fa-chevron-down'> </i>
-        </div>
-        <div id="step">
-          <span>How Websites Work.</span>
-        </div>
-      </div>
       <a id="courses-toggle" href="/">More Courses</a>
+    <% if Rails.env.production? %>
       <a id="heap-analytics" href="https://heapanalytics.com/?utm_source=badge"><img style="width:108px;height:41px" src="//heapanalytics.com/img/badgeLight.png" alt="Heap - iOS and Web Analytics" /></a>
+    <% end %>
    </div>
-   <div id='top-bar-spacer'></div>
 
    <div id="courses"><ul></ul></div>
-    <div id="course-title">
-      <svg xmlns="http://www.w3.org/2000/svg" version="1.1" data-icon="caret-right" data-container-transform="translate(4 0)" viewBox="0 0 16 16">
-        <path d="M0 0v16l8-8-8-8z" transform="translate(4)" />
-      </svg>
 
-      <h2></h2>
+   <div id="world">
+   <% @course.payload["steps"].each do |step| %>
+     <%= step[:content].to_s.html_safe %>
+   <% end %>
+   </div>
+
+   <div id="description">
+     <div>
+       <h3>Loading Diagram...</h3>
+       <p>
+         Browser Requirements:
+       </p>
+       <ul>
+         <li>HTML5</li>
+         <li>SVG</li>
+       </ul>
+     </div>
+   </div>
+
+   <div id="steps-wrap">
+     <div id="steps-count"></div>
+   </div>
+
+    <div id="prev-next-wrap">
+      <div id="prev-next">
+        <a class='prev' href='#'>
+          <i class='fa fa-chevron-left'> </i>
+        </a><a class='next' href='#'>
+          <i class='fa fa-chevron-right'> </i>
+        </a>
+      </div>
     </div>
 
     <div id="table-of-contents">
@@ -324,43 +338,12 @@
       </p>
     </div>
 
-    <div id="prev-next-wrap">
-      <div class="divider"></div>
-      <div id="prev-next">
-        <a class='prev' href='#'>
-          <i class='fa fa-chevron-left'> </i> <span>Previous</span>
-        </a><a class='next' href='#'>
-          <span>Next</span> <i class='fa fa-chevron-right'> </i>
-        </a>
-      </div>
-    </div>
-
-    <div id="description">
-      <div>
-        <h3>Loading Diagram...</h3>
-        <p>
-          Browser Requirements:
-        </p>
-        <ul>
-          <li>HTML5</li>
-          <li>SVG</li>
-        </ul>
-      </div>
-    </div>
-
     <div id="item-content"></div>
-
-    <div id="world">
-    <% @course.payload["steps"].each do |step| %>
-      <%= step[:content].to_s.html_safe %>
-    <% end %>
-    </div>
-
 
     <!-- Begin MailChimp Signup Form --><div id="signup-form">
     <form action="http://ruhoh.us1.list-manage.com/subscribe/post?u=af7ae466c004441192ef9e2c5&amp;id=dd36395f1e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
     <div class="mc-field-group">
-      <label for="mce-EMAIL">Subscribe to New Course Alerts</label>
+      <label for="mce-EMAIL">Subscribe to new course alerts</label>
       <br><input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="name@email.com">
       <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
     </div>
@@ -377,7 +360,6 @@
     <script>
       var courses = new Courses(<%= Course.all.to_json.html_safe %>);
       var course = <%= Course.find(@course.name).to_json.html_safe %>;
-      courses.update(course);
 
       World.diagram = new Diagram(course.url);
 

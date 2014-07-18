@@ -171,9 +171,8 @@ var Display = (function() {
 
     function updateBreadCrumb(graph) {
         var current = graph.meta('index') + 1;
-        var count = 'Step <em>'+ current + '</em> of ' + graph.meta('total');
-        d3.select('#step span').html(graph.meta('title'));
-        d3.select('#steps-count span').html(count);
+        var count = '<em>'+ current + '</em> of ' + graph.meta('total') + ' <i class="fa fa-chevron-down"> </i>';
+        d3.select('#steps-count').html(count);
         d3.select('#signup-form').classed('active', current === graph.meta('total'));
     }
 
