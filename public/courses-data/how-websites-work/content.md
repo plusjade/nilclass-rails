@@ -1,7 +1,3 @@
-{
-  "diagram" : "world"
-}
-
 # How Websites Work.
 {
     "diagramStep" : "internet",
