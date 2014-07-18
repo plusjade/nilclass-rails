@@ -9,6 +9,7 @@
                         "item" : "user",
                         "icon" : "girl",
                         "id" : "Anna",
+                        "grid" : "right",
                         "content" : "This is Anna.",
                         "connect" : ["Phone"]
                     }
@@ -78,7 +79,7 @@
                     {
                         "item": "web-server",
                         "id" : "Web Server",
-                        "grid" : "down right",
+                        "grid" : "down:0.5 right:0.5",
                         "connect" : ["Server", "Filesystem"]
                     }
                     ,
@@ -226,14 +227,14 @@
                         {
                             "item": "server",
                             "id" : "Server (clone 1)",
-                            "grid" : "up:2",
+                            "grid" : "up",
                             "connect" : ["Reverse Proxy", "Web Server clone 1"]
                         }
                         ,
                         {
                             "item": "web-server",
                             "id" : "Web Server clone 1",
-                            "grid" : "down right",
+                            "grid" : "down:0.5 right:0.5",
                             "connect" : ["App clone 1"]
                         }
                         ,
@@ -253,14 +254,14 @@
                         {
                             "item": "server",
                             "id" : "Server (clone 2)",
-                            "grid" : "down:2",
+                            "grid" : "down",
                             "connect" : ["Reverse Proxy", "Web Server clone 2"]
                         }
                         ,
                         {
                             "item": "web-server",
                             "id" : "Web Server clone 2",
-                            "grid" : "down right",
+                            "grid" : "down:0.5 right:0.5",
                             "connect" : ["App clone 2"]
                         }
                         ,
