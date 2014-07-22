@@ -14,9 +14,14 @@ var Display = (function() {
 
         updateNodes(nodes);
 
-        World.container.selectAll("g.node")
-            .data(graph.metaItems('focus'), function(d) { return d._id })
-            .call(Style.highlight);
+        var types = ['focus'];
+        var nodes = World.container.selectAll("g.node");
+
+        types.forEach(function(type) {
+            nodes
+                .data(graph.metaItems(type), function(d) { return d._id })
+                .call(Style[type]);
+        })
     }
 
     function updateNodes(nodes) {

@@ -76,7 +76,7 @@ var Style = {
     }
 
     ,
-    highlight : function(nodes) {
+    focus : function(nodes) {
         nodes.selectAll("use")
             .transition()
             .duration(World.duration)
@@ -112,7 +112,7 @@ var Style = {
             .attr('r', 8)
 
         nodes.insert('svg:circle', 'g')
-            .attr('class', 'highlight')
+            .attr('class', 'focus')
             .attr('r', 0)
             .transition()
                 .duration(World.duration)
@@ -122,7 +122,7 @@ var Style = {
                 .attr('r', 50)
 
 
-        nodes.exit().selectAll("circle.highlight").transition()
+        nodes.exit().selectAll("circle.focus").transition()
             .duration(World.duration)
             .attr('r', 0)
             .remove()
