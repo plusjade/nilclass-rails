@@ -63,12 +63,12 @@ var Style = {
     labels : function(nodes) {
         nodes.append("svg:text")
                 .attr('class', 'text-bg')
-                .attr("dy", 45)
+                .attr("dy", 35)
                 .attr("text-anchor", "middle")
                 .text(function(d) { return d.name || d.id })
 
         nodes.append("svg:text")
-                .attr("dy", 45)
+                .attr("dy", 35)
                 .attr("text-anchor", "middle")
                 .text(function(d) { return d.name || d.id });
 
