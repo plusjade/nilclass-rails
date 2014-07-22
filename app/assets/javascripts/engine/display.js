@@ -62,10 +62,7 @@ var Display = (function() {
             .style("fill-opacity", 1);
 
 
-        var nodeExit = node.exit().transition()
-            .duration(World.duration)
-            .style("fill-opacity", 0)
-            .remove();
+        var nodeExit = node.exit().remove();
 
         nodeExit.select("circle").attr("r", 1);
         nodeExit.select("text").style("fill-opacity", 1);
