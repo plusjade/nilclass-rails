@@ -130,7 +130,7 @@ var Diagram = function(endpoint) {
     function getGraph(index) {
         var stepIndex = Paths[index].diagramStepIndex,
             steps = Steps.slice(0, stepIndex+1),
-            items = JSON.parse(JSON.stringify(steps.shift().action.items)),
+            items = JSON.parse(JSON.stringify(steps.shift().actions[0].items)),
             graph = new Graph(items),
             metadata = {};
 
@@ -158,13 +158,11 @@ var Diagram = function(endpoint) {
     }
 
     function merge(graph, step) {
-        var actions = step.action ?
-                        [step.action] :
-                        (step.actions ? step.actions : []);
-
+        var actions = step.actions || [];
         if(actions.length === 0) {
             throw "The step '"+ step.diagramStep + "' has 0 action statements."
         }
+
         actions.forEach(function(action) {
             verifyMethod(action.method);
 
