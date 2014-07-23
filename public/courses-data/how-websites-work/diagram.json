@@ -2,115 +2,127 @@
     "steps": [
         {
             "diagramStep" : "internet",
-            "action" : {
-                "method" : "add",
-                "items" : [
-                    {
-                        "item" : "user",
-                        "icon" : "girl",
-                        "id" : "Anna",
-                        "grid" : "right",
-                        "content" : "This is Anna.",
-                        "connect" : ["Phone"]
-                    }
-                    ,
-                    {
-                        "item" : "user",
-                        "id" : "You",
-                        "grid" : "down",
-                        "connect" : ["Laptop"]
-                    }
-                    ,
-                    {
-                        "item" : "user",
-                        "id" : "Pinky",
-                        "content" : "This is Pinky =D.",
-                        "icon" : "cat",
-                        "grid" : "down",
-                        "connect" : ["Tablet"]
-                    }
-                    ,
-                    {
-                        "item" : "tablet",
-                        "id" : "Tablet",
-                        "grid" : "right",
-                        "connect" : "Internet"
-                    }
+            "actions" : [
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "item" : "user",
+                            "icon" : "girl",
+                            "id" : "Anna",
+                            "connect" : ["Phone"]
+                        }
+                        ,
+                        {
+                            "item" : "user",
+                            "id" : "You",
+                            "connect" : ["Laptop"]
+                        }
+                        ,
+                        {
+                            "item" : "user",
+                            "id" : "Pinky",
+                            "icon" : "cat",
+                            "connect" : ["Tablet"]
+                        }
+                        ,
+                        {
+                            "item" : "tablet",
+                            "id" : "Tablet",
+                            "connect" : "Internet"
+                        }
 
-                    ,
-                    {
-                        "item": "laptop",
-                        "id" : "Laptop",
-                        "grid" : "up",
-                        "connect" : "Internet"
-                    }
-                    ,
+                        ,
+                        {
+                            "item": "laptop",
+                            "id" : "Laptop",
+                            "connect" : "Internet"
+                        }
+                        ,
 
-                    {
-                        "item" : "iphone",
-                        "id" : "Phone",
-                        "grid" : "up",
-                        "connect" : "Internet"
-                    }
-                    ,
-                    {
-                        "item": "internet",
-                        "id" : "Internet",
-                        "grid" : "down right"
-                    }
-                    ,
-                    {
-                        "item": "server",
-                        "id" : "Server",
-                        "grid" : "right",
-                        "connect" : ["Internet"]
-                    }
-                ]
+                        {
+                            "item" : "iphone",
+                            "id" : "Phone",
+                            "connect" : "Internet"
+                        }
+                        ,
+                        {
+                            "item": "internet",
+                            "id" : "Internet"
+                        }
+                        ,
+                        {
+                            "item": "server",
+                            "id" : "Server",
+                            "connect" : ["Internet"]
+                        }
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "Anna" : "right",
+                "You" : "right down",
+                "Pinky" : "right down:2",
+                "Tablet" : "right:2 down:2",
+                "Laptop" : "right:2 down",
+                "Phone" : "right:2",
+                "Internet" : "right:3 down",
+                "Server" : "right:4 down"
             }
         }
 
         ,
         {
             "diagramStep" : "static-server",
-            "action" : {
-                "method" : "add",
-                "from" : "Server",
-                "items" : [
-                    {
-                        "item": "web-server",
-                        "id" : "Web Server",
-                        "grid" : "down:0.5 right:0.5",
-                        "connect" : ["Server", "Filesystem"]
-                    }
-                    ,
-                    {
-                        "item": "filesystem",
-                        "id" : "Filesystem",
-                        "grid" : "right",
-                        "connect" : ["HTML", "Image", "Video"]
-                    }
-                    ,
-                    {
-                        "item" : "icon",
-                        "id" : "HTML",
-                        "icon" : "document-html",
-                        "grid" : "up right"
-                    }
-                    ,
-                    {
-                        "item" : "icon",
-                        "id" : "Image",
-                        "icon" : "image",
-                        "grid" : "down"
-                    }
-                    ,
-                    {
-                        "item" : "icon",
-                        "id" : "Video",
-                        "icon" : "video-2",
-                        "grid" : "down"
-                    }
-                ]
+            "actions" : [
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "item": "web-server",
+                            "id" : "Web Server",
+                            "from" : "Server",
+                            "connect" : ["Server", "Filesystem"]
+                        }
+                        ,
+                        {
+                            "item": "filesystem",
+                            "id" : "Filesystem",
+                            "from" : "Server",
+                            "connect" : ["HTML", "Image", "Video"]
+                        }
+                        ,
+                        {
+                            "item" : "icon",
+                            "id" : "HTML",
+                            "from" : "Server",
+                            "icon" : "document-html"
+                        }
+                        ,
+                        {
+                            "item" : "icon",
+                            "id" : "Image",
+                            "from" : "Server",
+                            "icon" : "image"
+                        }
+                        ,
+                        {
+                            "item" : "icon",
+                            "id" : "Video",
+                            "from" : "Server",
+                            "icon" : "video-2"
+                        }
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "Web Server" : "right:4.5 down:1.5",
+                "Filesystem" : "right:5.5 down:1.5",
+                "HTML" : "right:6.5 down:0.5",
+                "Image" : "right:6.5 down:1.5",
+                "Video" : "right:6.5 down:2.5"
             }
         }
 
@@ -119,13 +131,12 @@
             "diagramStep" : "web-application",
             "actions" : [
                 {
-                    "method" : "insert",
-                    "from" : "Web Server",
+                    "method" : "add",
                     "items" : [
                         {
                             "item": "application",
                             "id" : "Application",
-                            "grid" : "right",
+                            "from" : "Web Server",
                             "connect" : ["Web Server", "Filesystem"]
                         }
                     ]
@@ -141,6 +152,15 @@
                     ]
                 }
             ]
+            ,
+            "positions" : {
+                "Filesystem" : "right:6.5 down:1.5",
+                "HTML" : "right:7.5 down:0.5",
+                "Image" : "right:7.5 down:1.5",
+                "Video" : "right:7.5 down:2.5",
+
+                "Application" : "right:5.5 down:1.5"
+            }
         }
 
         ,
@@ -149,12 +169,11 @@
             "actions" : [
                 {
                     "method" : "add",
-                    "from" : "Application",
                     "items" : [
                         {
                             "item": "database",
                             "id" : "Database",
-                            "grid" : "up right",
+                            "from" : "Server",
                             "connect" : "Application"
                         }
                     ]
@@ -164,12 +183,20 @@
                     "method" : "update",
                     "items" : [
                         {
-                            "id" : "Filesystem",
-                            "grid" : "down right"
+                            "id" : "Filesystem"
                         }
                     ]
                 }
             ]
+            ,
+            "positions" : {
+                "Filesystem" : "right:6.5 down:2.5",
+                "HTML" : "right:7.5 down:1.5",
+                "Image" : "right:7.5 down:2.5",
+                "Video" : "right:7.5 down:3.5",
+
+                "Database" : "right:6.5 down:0.5"
+            }
         }
 
         ,
@@ -178,12 +205,11 @@
             "actions" : [
                 {
                     "method" : "add",
-                    "from" : "Application",
                     "items" : [
                         {
                             "item": "dedicated-database",
                             "id" : "Database Server",
-                            "grid" : "up right 2",
+                            "from" : "Server",
                             "connect" : "Application"
                         }
                     ]
@@ -198,21 +224,42 @@
                     ]
                 }
             ]
+            ,
+            "positions" : {
+                "Database Server" : "right:6.5 down:0.5"
+            }
         }
 
         ,
         {
             "diagramStep" : "reverse-proxy",
-            "action" : {
-                "method" : "insert",
-                "from" : "Internet",
-                "items" : [
-                    {
-                        "item": "reverse-proxy",
-                        "id" : "Reverse Proxy",
-                        "grid" : "right"
-                    }
-                ]
+            "actions" : [
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "item": "reverse-proxy",
+                            "id" : "Reverse Proxy",
+                            "from" : "Server"
+                        }
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "Server" : "right:5 down",
+
+                "Web Server" : "right:5.5 down:1.5",
+                "Filesystem" : "right:7.5 down:2.5",
+                "HTML" : "right:8.5 down:1.5",
+                "Image" : "right:8.5 down:2.5",
+                "Video" : "right:8.5 down:3.5",
+
+                "Application" : "right:6.5 down:1.5",
+
+                "Database Server" : "right:7.5 down:0.5",
+
+                "Reverse Proxy" : "right:4 down"
             }
         }
 
@@ -222,57 +269,57 @@
             "actions" : [
                 {
                     "method" : "add",
-                    "from" : "Server",
                     "items" : [
                         {
                             "item": "server",
                             "id" : "Server (clone 1)",
-                            "grid" : "up",
+                            "from" : "Server",
                             "connect" : ["Reverse Proxy", "Web Server clone 1"]
                         }
                         ,
                         {
                             "item": "web-server",
                             "id" : "Web Server clone 1",
-                            "grid" : "down:0.5 right:0.5",
+                            "from" : "Server",
                             "connect" : ["App clone 1"]
                         }
                         ,
                         {
                             "item": "application",
                             "id" : "App clone 1",
-                            "grid" : "right",
+                            "from" : "Server",
                             "connect" : "Database Server"
                         }
                     ]
                 }
+
                 ,
                 {
                     "method" : "add",
-                    "from" : "Server",
                     "items" : [
                         {
                             "item": "server",
                             "id" : "Server (clone 2)",
-                            "grid" : "down",
+                            "from" : "Server",
                             "connect" : ["Reverse Proxy", "Web Server clone 2"]
                         }
                         ,
                         {
                             "item": "web-server",
                             "id" : "Web Server clone 2",
-                            "grid" : "down:0.5 right:0.5",
+                            "from" : "Server",
                             "connect" : ["App clone 2"]
                         }
                         ,
                         {
                             "item": "application",
                             "id" : "App clone 2",
-                            "grid" : "right",
+                            "from" : "Server",
                             "connect" : "Database Server"
                         }
                     ]
                 }
+
                 ,
                 {
                     "method" : "update",
@@ -284,6 +331,16 @@
                     ]
                 }
             ]
+            ,
+            "positions" : {
+                "Server (clone 1)" : "right:5",
+                "Web Server clone 1" : "right:5.5 down:0.5",
+                "App clone 1" : "right:6.5 down:0.5",
+
+                "Server (clone 2)" : "right:5 down:2",
+                "Web Server clone 2" : "right:5.5 down:2.5",
+                "App clone 2" : "right:6.5 down:2.5"
+            }
         }
     ]
 }
