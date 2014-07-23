@@ -1,13 +1,29 @@
 // Library for consuming a graph object to generate coordinates 
 // in order to plot the graph on the page using d3.
 var Plot = function() {
-    var z = 0;
+    var margin = 50;
 
     // Plot the graph nodes based on the custom data format.
     // This means determing x and y coordinates relative to each node.
     // Note this is mutable service, it mutates the graph.
     function nodes(graph) {
-        walk(graph, graph._root, { "x" : 50, "y" : 50 });
+        for(id in graph.dict) {
+            graph.dict[id]._id = graph.dict[id].id || graph.dict[id].name;
+            var coord = gridify(graph.positions[id], 125);
+
+            graph.dict[id].x0 = 0;
+            graph.dict[id].y0 = 0;
+            graph.dict[id].x = margin + coord.x;
+            graph.dict[id].y = margin + coord.y;
+        }
+
+        for(id in graph.dict) {
+            if(graph.dict[id].from && graph.get(graph.dict[id].from)) {
+                var from = graph.get(graph.dict[id].from);
+                graph.dict[id].x0 = from.x;
+                graph.dict[id].y0 = from.y;
+            }
+        }
 
         return graph;
     }
@@ -65,27 +81,6 @@ var Plot = function() {
         })
 
         return links;
-    }
-
-    function walk(graph, start, previous) {
-        var item = graph.find(start);
-
-        item._id = item.id || item.name;
-        item.index = z;
-
-        var coord = gridify(item.grid, 125);
-
-        item.x0 = previous.x;
-        item.y0 = previous.y; 
-        item.x = previous.x + coord.x;
-        item.y = previous.y + coord.y;
-
-        graph.mappings(start).forEach(function(name) {
-            z++;
-            walk(graph, name, item);
-        })
-
-        return graph;
     }
 
     // parses grid statements to determine relative coordinate offset.

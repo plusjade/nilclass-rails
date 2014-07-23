@@ -129,10 +129,21 @@ var Diagram = function(endpoint) {
     // Example: Path[0] -> Step[2]
     function getGraph(index) {
         var stepIndex = Paths[index].diagramStepIndex,
-            steps = Steps.slice(0, stepIndex+1),
-            items = JSON.parse(JSON.stringify(steps.shift().actions[0].items)),
+            steps = Steps.slice(0, stepIndex+1);
+        var positions = steps.reduce(function(accumulator, step) {
+                            if(step.positions) {
+                                for(key in step.positions) {
+                                    accumulator[key] = step.positions[key];
+                                }
+                            }
+                            return accumulator;
+                          }, {});
+
+        var items = JSON.parse(JSON.stringify(steps.shift().actions[0].items)),
             graph = new Graph(items),
             metadata = {};
+
+        graph.positions = positions;
 
         // Note this process mutates the graph object in place.
         steps.reduce(function(accumulator, step) {
@@ -168,10 +179,7 @@ var Diagram = function(endpoint) {
 
             switch (action.method) {
                 case "add":
-                    graph.add(action.items, action.from);
-                    break;
-                case "insert":
-                    graph.insert(action.items, action.from);
+                    graph.add(action.items);
                     break;
                 case "update":
                     graph.update(action.items);
