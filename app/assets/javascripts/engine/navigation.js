@@ -42,13 +42,13 @@ var Navigation = function(selector) {
     }
 
     function initialize() {
-        d3Container.select('a.next')
+        d3Container.select('.next')
             .on('click', function() {
                 d3.event.preventDefault();
                 next();
             })
 
-        d3Container.select('a.prev')
+        d3Container.select('.prev')
             .on('click', function() {
                 d3.event.preventDefault();
                 previous();
