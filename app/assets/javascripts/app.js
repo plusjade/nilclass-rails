@@ -58,3 +58,9 @@ d3.select("body")
     })
 
 
+d3.select('#steps-count').on('click', function() {
+    d3.event.preventDefault();
+    var node = d3.select('#table-of-contents');
+
+    node.classed('active', !node.classed('active'));
+})
