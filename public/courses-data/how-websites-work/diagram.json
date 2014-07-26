@@ -1,7 +1,53 @@
 {
     "steps": [
         {
-            "diagramStep" : "internet",
+            "diagramStep" : "start",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "item" : "user",
+                            "id" : "You"
+                        }
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "You" : "right down"
+            }
+        }
+
+        ,
+        {
+            "diagramStep" : "web-browser",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "id" : "Web Browser",
+                            "item" : "web-browser",
+                            "from" : "You"
+                        }
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "Web Browser" : "right:2 down"
+            }
+            ,
+            "connections" : {
+                "You" : "Web Browser"
+            }
+        }
+
+
+        ,
+        {
+            "diagramStep" : "web-browser-platforms",
             "actions" : [
                 {
                     "method" : "add",
@@ -10,51 +56,49 @@
                             "item" : "user",
                             "icon" : "girl",
                             "id" : "Anna",
-                            "connect" : ["Phone"]
-                        }
-                        ,
-                        {
-                            "item" : "user",
-                            "id" : "You",
-                            "connect" : ["Laptop"]
+                            "from" : "You"
                         }
                         ,
                         {
                             "item" : "user",
                             "id" : "Pinky",
                             "icon" : "cat",
-                            "connect" : ["Tablet"]
+                            "from" : "You"
                         }
                         ,
                         {
                             "item" : "tablet",
                             "id" : "Tablet",
-                            "connect" : "Internet"
+                            "from" : "You"
                         }
 
                         ,
                         {
                             "item": "laptop",
                             "id" : "Laptop",
-                            "connect" : "Internet"
+                            "from" : "You"
                         }
                         ,
 
                         {
                             "item" : "iphone",
                             "id" : "Phone",
-                            "connect" : "Internet"
+                            "from" : "You"
+                        }
+
+                        ,
+                        {
+                            "id" : "Phone Web Browser",
+                            "name" : "Web Browser",
+                            "item" : "web-browser",
+                            "from" : "You"
                         }
                         ,
                         {
-                            "item": "internet",
-                            "id" : "Internet"
-                        }
-                        ,
-                        {
-                            "item": "server",
-                            "id" : "Server",
-                            "connect" : ["Internet"]
+                            "id" : "Tablet Web Browser",
+                            "name" : "Web Browser",
+                            "item" : "web-browser",
+                            "from" : "You"
                         }
                     ]
                 }
@@ -62,13 +106,108 @@
             ,
             "positions" : {
                 "Anna" : "right",
-                "You" : "right down",
                 "Pinky" : "right down:2",
-                "Tablet" : "right:2 down:2",
-                "Laptop" : "right:2 down",
-                "Phone" : "right:2",
-                "Internet" : "right:3 down",
-                "Server" : "right:4 down"
+                "Tablet" : "right:3 down:2",
+                "Laptop" : "right:3 down",
+                "Phone" : "right:3",
+
+                "Phone Web Browser" : "right:2",
+                "Tablet Web Browser" : "right:2 down:2"
+            }
+            ,
+            "connections" : {
+                "Anna" : "Phone Web Browser",
+                "Phone Web Browser" : "Phone",
+                "Pinky" : "Tablet Web Browser",
+                "Tablet Web Browser" : "Tablet",
+                "Web Browser" : "Laptop"
+            }
+        }
+
+        ,
+        {
+            "diagramStep" : "internet",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "item": "internet",
+                            "from" : "Laptop",
+                            "id" : "Internet"
+                        }
+                        ,
+                        {
+                            "item" : "icon",
+                            "id" : "HTML",
+                            "from" : "Internet",
+                            "icon" : "document-html"
+                        }
+                        ,
+                        {
+                            "item" : "icon",
+                            "id" : "Image",
+                            "from" : "Internet",
+                            "icon" : "image"
+                        }
+                        ,
+                        {
+                            "item" : "icon",
+                            "id" : "Video",
+                            "from" : "Internet",
+                            "icon" : "video-2"
+                        }
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "Internet" : "right:4 down",
+                "HTML" : "right:5",
+                "Image" : "right:6 down:1",
+                "Video" : "right:5 down:2"
+            }
+            ,
+            "connections" : {
+                "Internet" : ["Phone", "Laptop", "Tablet", "HTML", "Image", "Video"]
+            }
+        }
+
+        ,
+        {
+            "diagramStep" : "server",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "item": "server",
+                            "id" : "Server",
+                            "from" : "Internet"
+                        }
+                        ,
+                        {
+                            "item": "filesystem",
+                            "id" : "Filesystem",
+                            "from" : "Server"
+                        }
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "HTML" : "right:6.5 down:0.5",
+                "Image" : "right:6.5 down:1.5",
+                "Video" : "right:6.5 down:2.5",
+
+                "Server" : "right:5 down",
+                "Filesystem" : "right:5.5 down:1.5"
+            }
+            ,
+            "connections" : {
+                "Internet" : ["Phone", "Laptop", "Tablet"],
+                "Server" : ["Internet", "Filesystem"],
+                "Filesystem" : ["HTML", "Image", "Video"]
             }
         }
 
@@ -82,49 +221,138 @@
                         {
                             "item": "web-server",
                             "id" : "Web Server",
-                            "from" : "Server",
-                            "connect" : ["Server", "Filesystem"]
-                        }
-                        ,
-                        {
-                            "item": "filesystem",
-                            "id" : "Filesystem",
-                            "from" : "Server",
-                            "connect" : ["HTML", "Image", "Video"]
-                        }
-                        ,
-                        {
-                            "item" : "icon",
-                            "id" : "HTML",
-                            "from" : "Server",
-                            "icon" : "document-html"
-                        }
-                        ,
-                        {
-                            "item" : "icon",
-                            "id" : "Image",
-                            "from" : "Server",
-                            "icon" : "image"
-                        }
-                        ,
-                        {
-                            "item" : "icon",
-                            "id" : "Video",
-                            "from" : "Server",
-                            "icon" : "video-2"
+                            "from" : "Server"
                         }
                     ]
                 }
             ]
             ,
             "positions" : {
-                "Web Server" : "right:4.5 down:1.5",
-                "Filesystem" : "right:5.5 down:1.5",
-                "HTML" : "right:6.5 down:0.5",
-                "Image" : "right:6.5 down:1.5",
-                "Video" : "right:6.5 down:2.5"
+                "Web Server" : "right:5.5 down:1.5",
+                "Filesystem" : "right:6.5 down:1.5",
+                "HTML" : "right:7.5 down:0.5",
+                "Image" : "right:7.5 down:1.5",
+                "Video" : "right:7.5 down:2.5"
+            }
+            ,
+            "connections" : {
+                "Server" : ["Internet", "Web Server"],
+                "Web Server" : "Filesystem"
             }
         }
+
+        ,
+        {
+            "diagramStep" : "security-gate",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "icon": "document",
+                            "id" : "Passwords",
+                            "from" : "Filesystem"
+                        }
+                        ,
+                        {
+                            "icon": "document",
+                            "id" : "Secrets",
+                            "from" : "Filesystem"
+                        }
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "Passwords" : "right:8 down:1",
+                "Secrets" : "right:8 down:2"
+            }
+            ,
+            "connections" : {
+                "Passwords" : "Filesystem",
+                "Secrets" : "Filesystem"
+            }
+        }
+
+        ,
+        {
+            "diagramStep" : "static-server-amazon",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "item" : "icon",
+                            "id" : "product-1",
+                            "name" : "Product 1",
+                            "from" : "Filesystem",
+                            "icon" : "document-html"
+                        }
+                        ,
+                        {
+                            "item" : "icon",
+                            "id" : "product-2",
+                            "name" : "Product 2",
+                            "from" : "Filesystem",
+                            "icon" : "document-html"
+                        }
+                        ,
+                        {
+                            "item" : "icon",
+                            "id" : "product-3",
+                            "name" : "Product 3",
+                            "from" : "Filesystem",
+                            "icon" : "document-html"
+                        }
+                        ,
+                        {
+                            "item" : "icon",
+                            "id" : "product-4",
+                            "name" : "Product 4",
+                            "from" : "Filesystem",
+                            "icon" : "document-html"
+                        }
+                    ]
+                }
+                ,
+                {
+                    "method" : "remove",
+                    "items" : [
+                        {
+                            "id" : "HTML"
+                        }
+                        ,
+                        {
+                            "id" : "Video"
+                        }
+                        ,
+                        {
+                            "id" : "Image"
+                        }
+                        ,
+                        {
+                            "id" : "Passwords"
+                        }
+                        ,
+                        {
+                            "id" : "Secrets"
+                        }
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "product-1" : "right:7.5",
+                "product-2" : "right:7.5 down:1",
+                "product-3" : "right:7.5 down:2",
+                "product-4" : "right:7.5 down:3"
+            }
+            ,
+            "connections" : {
+                "Filesystem" : ["product-1", "product-2", "product-3", "product-4"]
+            }
+        }
+
 
         ,
         {
@@ -136,30 +364,54 @@
                         {
                             "item": "application",
                             "id" : "Application",
-                            "from" : "Web Server",
-                            "connect" : ["Web Server", "Filesystem"]
+                            "from" : "Web Server"
+                        }
+                        ,
+                        {
+                            "icon": "documents-code",
+                            "id" : "Templates",
+                            "from" : "Web Server"
                         }
                     ]
                 }
                 ,
                 {
-                    "method" : "update",
+                    "method" : "remove",
                     "items" : [
                         {
-                            "id" : "Web Server",
-                            "connect" : ["Server"]
+                            "id" : "product-1"
+                        }
+                        ,
+                        {
+                            "id" : "product-2"
+                        }
+                        ,
+                        {
+                            "id" : "product-3"
+                        }
+                        ,
+                        {
+                            "id" : "product-4"
                         }
                     ]
                 }
             ]
             ,
             "positions" : {
-                "Filesystem" : "right:6.5 down:1.5",
-                "HTML" : "right:7.5 down:0.5",
-                "Image" : "right:7.5 down:1.5",
-                "Video" : "right:7.5 down:2.5",
+                "Filesystem" : "right:8.5 down:1.5",
+                "product-1" : "right:9.5",
+                "product-2" : "right:9.5 down:1",
+                "product-3" : "right:9.5 down:2",
+                "product-4" : "right:9.5 down:3",
 
-                "Application" : "right:5.5 down:1.5"
+                "Application" : "right:6.5 down:1.5",
+                "Templates" : "right:7.5 down:1.5"
+            }
+            ,
+            "connections" : {
+                "Application" : ["Web Server", "Templates"],
+                "Web Server" : [],
+                "Templates" : "Filesystem"
             }
         }
 
@@ -176,26 +428,47 @@
                             "from" : "Server",
                             "connect" : "Application"
                         }
-                    ]
-                }
-                ,
-                {
-                    "method" : "update",
-                    "items" : [
+                        ,
                         {
-                            "id" : "Filesystem"
+                            "icon" : "document",
+                            "id" : "Product 1",
+                            "from" : "Database"
                         }
+                        ,
+                        {
+                            "icon" : "document",
+                            "id" : "Product 2",
+                            "from" : "Database"
+                        }
+                        ,
+                        {
+                            "icon" : "document",
+                            "id" : "Product 3",
+                            "from" : "Database"
+                        }
+                        ,
+                        {
+                            "icon" : "document",
+                            "id" : "Product 4",
+                            "from" : "Database"
+                        }
+
                     ]
                 }
             ]
             ,
             "positions" : {
-                "Filesystem" : "right:6.5 down:2.5",
-                "HTML" : "right:7.5 down:1.5",
-                "Image" : "right:7.5 down:2.5",
-                "Video" : "right:7.5 down:3.5",
+                "Filesystem" : "right:8 down:2.5",
 
-                "Database" : "right:6.5 down:0.5"
+                "Database" : "right:7.5 down:0.5",
+                "Product 1" : "right:9",
+                "Product 2" : "right:9 down:0.75",
+                "Product 3" : "right:9 down:1.5",
+                "Product 4" : "right:9 down:2.25"
+            }
+            ,
+            "connections" : {
+                "Database" : ["Templates", "Product 1", "Product 2","Product 3","Product 4","Product data 5"]
             }
         }
 
@@ -209,8 +482,7 @@
                         {
                             "item": "dedicated-database",
                             "id" : "Database Server",
-                            "from" : "Server",
-                            "connect" : "Application"
+                            "from" : "Server"
                         }
                     ]
                 }
@@ -226,40 +498,11 @@
             ]
             ,
             "positions" : {
-                "Database Server" : "right:6.5 down:0.5"
+                "Database Server" : "right:7.5"
             }
-        }
-
-        ,
-        {
-            "diagramStep" : "reverse-proxy",
-            "actions" : [
-                {
-                    "method" : "add",
-                    "items" : [
-                        {
-                            "item": "reverse-proxy",
-                            "id" : "Reverse Proxy",
-                            "from" : "Server"
-                        }
-                    ]
-                }
-            ]
             ,
-            "positions" : {
-                "Server" : "right:5 down",
-
-                "Web Server" : "right:5.5 down:1.5",
-                "Filesystem" : "right:7.5 down:2.5",
-                "HTML" : "right:8.5 down:1.5",
-                "Image" : "right:8.5 down:2.5",
-                "Video" : "right:8.5 down:3.5",
-
-                "Application" : "right:6.5 down:1.5",
-
-                "Database Server" : "right:7.5 down:0.5",
-
-                "Reverse Proxy" : "right:4 down"
+            "connections" : {
+                "Database Server" : ["Templates", "Product 1", "Product 2","Product 3","Product 4","Product data 5"]
             }
         }
 
@@ -271,10 +514,10 @@
                     "method" : "add",
                     "items" : [
                         {
-                            "item": "server",
                             "id" : "Server (clone 1)",
+                            "item": "server",
                             "from" : "Server",
-                            "connect" : ["Reverse Proxy", "Web Server clone 1"]
+                            "connect" : ["Web Server clone 1"]
                         }
                         ,
                         {
@@ -290,6 +533,13 @@
                             "from" : "Server",
                             "connect" : "Database Server"
                         }
+                        ,
+                        {
+                            "id" : "templates-clone-1",
+                            "icon": "documents-code",
+                            "name" : "Templates",
+                            "from" : "Server"
+                        }
                     ]
                 }
 
@@ -298,10 +548,10 @@
                     "method" : "add",
                     "items" : [
                         {
-                            "item": "server",
                             "id" : "Server (clone 2)",
+                            "item": "server",
                             "from" : "Server",
-                            "connect" : ["Reverse Proxy", "Web Server clone 2"]
+                            "connect" : ["Web Server clone 2"]
                         }
                         ,
                         {
@@ -317,29 +567,112 @@
                             "from" : "Server",
                             "connect" : "Database Server"
                         }
-                    ]
-                }
-
-                ,
-                {
-                    "method" : "update",
-                    "items" : [
+                        ,
                         {
-                            "id" : "Application",
-                            "grid" : "right 2"
+                            "id" : "templates-clone-2",
+                            "icon": "documents-code",
+                            "name" : "Templates",
+                            "from" : "Server"
                         }
                     ]
                 }
+
             ]
             ,
             "positions" : {
                 "Server (clone 1)" : "right:5",
                 "Web Server clone 1" : "right:5.5 down:0.5",
                 "App clone 1" : "right:6.5 down:0.5",
+                "templates-clone-1" : "right:7 down:1",
 
                 "Server (clone 2)" : "right:5 down:2",
                 "Web Server clone 2" : "right:5.5 down:2.5",
-                "App clone 2" : "right:6.5 down:2.5"
+                "App clone 2" : "right:6.5 down:2.5",
+                "templates-clone-2" : "right:7 down:2"
+            }
+            ,
+            "connections" : {
+                "Web Server clone 1" : ["Server (clone 1)", "App clone 1"],
+                "Web Server clone 2" : ["Server (clone 2)", "App clone 2"],
+                "templates-clone-1" : ["App clone 1", "Database Server"],
+                "templates-clone-2" : ["App clone 2", "Database Server"]
+            }
+        }
+
+        ,
+        {
+            "diagramStep" : "reverse-proxy",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "item": "reverse-proxy",
+                            "id" : "Reverse Proxy",
+                            "from" : "Internet"
+                        }
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "Server" : "right:6.5 down",
+
+                "Web Server" : "right:7 down:1.5",
+                "Filesystem" : "right:9 down:2.5",
+                "Product 1" : "right:10",
+                "Product 2" : "right:10 down:0.75",
+                "Product 3" : "right:10 down:1.5",
+                "Product 4" : "right:10 down:2.25",
+
+
+                "Application" : "right:8 down:1.5",
+                "Templates" : "right:9 down:1.5",
+
+                "Database Server" : "right:9",
+
+                "Server (clone 1)" : "right:6.5",
+                "Web Server clone 1" : "right:7 down:0.5",
+                "App clone 1" : "right:8 down:0.5",
+                "templates-clone-1" : "right:8.5 down:1",
+
+                "Server (clone 2)" : "right:6.5 down:2",
+                "Web Server clone 2" : "right:7 down:2.5",
+                "App clone 2" : "right:8 down:2.5",
+                "templates-clone-2" : "right:8.5 down:2",
+
+                "Reverse Proxy" : "right:5 down"
+            }
+            ,
+            "connections" : {
+                "Server" : ["Web Server"],
+                "Reverse Proxy" : "Internet"
+            }
+        }
+
+        ,
+        {
+            "diagramStep" : "reverse-proxy-web-server",
+            "actions" : [
+                {
+                    "method" : "add",
+                    "items" : [
+                        {
+                            "item": "web-server",
+                            "id" : "reverse-proxy-web-server",
+                            "name" : "Web Server",
+                            "from" : "Reverse Proxy"
+                        }
+                    ]
+                }
+            ]
+            ,
+            "positions" : {
+                "reverse-proxy-web-server" : "right:5.5 down:1.5"
+            }
+            ,
+            "connections" : {
+                "reverse-proxy-web-server" : ["Reverse Proxy", "Server", "Server (clone 1)", "Server (clone 2)"]
             }
         }
     ]
