@@ -7,7 +7,7 @@
                     "method" : "add",
                     "items" : [
                         {
-                            "item" : "user",
+                            "icon" : "user-2",
                             "id" : "You"
                         }
                     ]
@@ -28,7 +28,7 @@
                     "items" : [
                         {
                             "id" : "Web Browser",
-                            "item" : "web-browser",
+                            "icon" : "web-browser",
                             "from" : "You"
                         }
                     ]
@@ -53,35 +53,33 @@
                     "method" : "add",
                     "items" : [
                         {
-                            "item" : "user",
                             "icon" : "girl",
                             "id" : "Anna",
                             "from" : "You"
                         }
                         ,
                         {
-                            "item" : "user",
                             "id" : "Pinky",
                             "icon" : "cat",
                             "from" : "You"
                         }
                         ,
                         {
-                            "item" : "tablet",
+                            "icon": "tablet",
                             "id" : "Tablet",
                             "from" : "You"
                         }
 
                         ,
                         {
-                            "item": "laptop",
+                            "icon": "laptop",
                             "id" : "Laptop",
                             "from" : "You"
                         }
                         ,
 
                         {
-                            "item" : "iphone",
+                            "icon" : "iphone",
                             "id" : "Phone",
                             "from" : "You"
                         }
@@ -90,14 +88,14 @@
                         {
                             "id" : "Phone Web Browser",
                             "name" : "Web Browser",
-                            "item" : "web-browser",
+                            "icon" : "web-browser",
                             "from" : "You"
                         }
                         ,
                         {
                             "id" : "Tablet Web Browser",
                             "name" : "Web Browser",
-                            "item" : "web-browser",
+                            "icon" : "web-browser",
                             "from" : "You"
                         }
                     ]
@@ -132,30 +130,27 @@
                     "method" : "add",
                     "items" : [
                         {
-                            "item": "internet",
-                            "from" : "Laptop",
-                            "id" : "Internet"
+                            "id" : "Internet",
+                            "icon": "wifi-high",
+                            "from" : "Laptop"
                         }
                         ,
                         {
-                            "item" : "icon",
                             "id" : "HTML",
-                            "from" : "Internet",
-                            "icon" : "document-html"
+                            "icon" : "document-html",
+                            "from" : "Internet"
                         }
                         ,
                         {
-                            "item" : "icon",
                             "id" : "Image",
-                            "from" : "Internet",
-                            "icon" : "image"
+                            "icon" : "image",
+                            "from" : "Internet"
                         }
                         ,
                         {
-                            "item" : "icon",
                             "id" : "Video",
-                            "from" : "Internet",
-                            "icon" : "video-2"
+                            "icon" : "video-2",
+                            "from" : "Internet"
                         }
                     ]
                 }
@@ -181,14 +176,14 @@
                     "method" : "add",
                     "items" : [
                         {
-                            "item": "server",
                             "id" : "Server",
+                            "icon": "server2",
                             "from" : "Internet"
                         }
                         ,
                         {
-                            "item": "filesystem",
                             "id" : "Filesystem",
+                            "icon": "filesystem",
                             "from" : "Server"
                         }
                     ]
@@ -219,8 +214,8 @@
                     "method" : "add",
                     "items" : [
                         {
-                            "item": "web-server",
                             "id" : "Web Server",
+                            "icon": "software",
                             "from" : "Server"
                         }
                     ]
@@ -282,7 +277,6 @@
                     "method" : "add",
                     "items" : [
                         {
-                            "item" : "icon",
                             "id" : "product-1",
                             "name" : "Product 1",
                             "from" : "Filesystem",
@@ -290,7 +284,6 @@
                         }
                         ,
                         {
-                            "item" : "icon",
                             "id" : "product-2",
                             "name" : "Product 2",
                             "from" : "Filesystem",
@@ -298,7 +291,6 @@
                         }
                         ,
                         {
-                            "item" : "icon",
                             "id" : "product-3",
                             "name" : "Product 3",
                             "from" : "Filesystem",
@@ -306,7 +298,6 @@
                         }
                         ,
                         {
-                            "item" : "icon",
                             "id" : "product-4",
                             "name" : "Product 4",
                             "from" : "Filesystem",
@@ -362,14 +353,14 @@
                     "method" : "add",
                     "items" : [
                         {
-                            "item": "application",
                             "id" : "Application",
+                            "icon": "software",
                             "from" : "Web Server"
                         }
                         ,
                         {
-                            "icon": "documents-code",
                             "id" : "Templates",
+                            "icon": "documents-code",
                             "from" : "Web Server"
                         }
                     ]
@@ -423,33 +414,32 @@
                     "method" : "add",
                     "items" : [
                         {
-                            "item": "database",
                             "id" : "Database",
-                            "from" : "Server",
-                            "connect" : "Application"
+                            "icon": "software",
+                            "from" : "Server"
                         }
                         ,
                         {
-                            "icon" : "document",
                             "id" : "Product 1",
+                            "icon" : "document",
                             "from" : "Database"
                         }
                         ,
                         {
-                            "icon" : "document",
                             "id" : "Product 2",
+                            "icon" : "document",
                             "from" : "Database"
                         }
                         ,
                         {
-                            "icon" : "document",
                             "id" : "Product 3",
+                            "icon" : "document",
                             "from" : "Database"
                         }
                         ,
                         {
-                            "icon" : "document",
                             "id" : "Product 4",
+                            "icon" : "document",
                             "from" : "Database"
                         }
 
@@ -480,8 +470,8 @@
                     "method" : "add",
                     "items" : [
                         {
-                            "item": "dedicated-database",
                             "id" : "Database Server",
+                            "icon": "database",
                             "from" : "Server"
                         }
                     ]
@@ -515,23 +505,20 @@
                     "items" : [
                         {
                             "id" : "Server (clone 1)",
-                            "item": "server",
-                            "from" : "Server",
-                            "connect" : ["Web Server clone 1"]
+                            "icon": "server2",
+                            "from" : "Server"
                         }
                         ,
                         {
-                            "item": "web-server",
                             "id" : "Web Server clone 1",
-                            "from" : "Server",
-                            "connect" : ["App clone 1"]
+                            "icon": "software",
+                            "from" : "Server"
                         }
                         ,
                         {
-                            "item": "application",
                             "id" : "App clone 1",
-                            "from" : "Server",
-                            "connect" : "Database Server"
+                            "icon": "software",
+                            "from" : "Server"
                         }
                         ,
                         {
@@ -549,21 +536,19 @@
                     "items" : [
                         {
                             "id" : "Server (clone 2)",
-                            "item": "server",
-                            "from" : "Server",
-                            "connect" : ["Web Server clone 2"]
+                            "icon": "server2",
+                            "from" : "Server"
                         }
                         ,
                         {
-                            "item": "web-server",
                             "id" : "Web Server clone 2",
-                            "from" : "Server",
-                            "connect" : ["App clone 2"]
+                            "icon": "software",
+                            "from" : "Server"
                         }
                         ,
                         {
-                            "item": "application",
                             "id" : "App clone 2",
+                            "icon": "software",
                             "from" : "Server",
                             "connect" : "Database Server"
                         }
@@ -607,8 +592,8 @@
                     "method" : "add",
                     "items" : [
                         {
-                            "item": "reverse-proxy",
                             "id" : "Reverse Proxy",
+                            "icon": "server2",
                             "from" : "Internet"
                         }
                     ]
@@ -658,8 +643,8 @@
                     "method" : "add",
                     "items" : [
                         {
-                            "item": "web-server",
                             "id" : "reverse-proxy-web-server",
+                            "icon" : "software",
                             "name" : "Web Server",
                             "from" : "Reverse Proxy"
                         }
