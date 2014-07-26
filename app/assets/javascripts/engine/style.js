@@ -22,20 +22,6 @@ var Style = {
         return nodes;
     }
     ,
-    software : function(nodes) {
-        nodes.append('circle')
-            .attr('class', 'icon-bg')
-            .attr('r', 14)
-
-        nodes.append("svg:circle")
-            .attr('class', 'software')
-            .attr("r", 7);
-
-        nodes.call(Style.clicker);
-
-        return nodes;
-    }
-    ,
     icon : function(nodes) {
         nodes.append('circle')
             .attr('class', 'icon-bg')

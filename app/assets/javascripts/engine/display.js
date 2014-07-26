@@ -36,13 +36,7 @@ var Display = (function() {
                 return "translate(" + (d.x0 || root.x0) + "," + (d.y0 || root.y0) + ")";
             })
 
-        nodeEnter
-            .filter(function(d) { return d.icon === "software" })
-            .call(Style.software)
-
-        nodeEnter
-            .filter(function(d) { return d.icon != "software" })
-            .call(Style.icon)
+        nodeEnter.call(Style.icon);
 
         nodeEnter
             .filter(function(d) { return !!d.text })
@@ -62,10 +56,7 @@ var Display = (function() {
             .style("fill-opacity", 1);
 
 
-        var nodeExit = node.exit().remove();
-
-        nodeExit.select("circle").attr("r", 1);
-        nodeExit.select("text").style("fill-opacity", 1);
+        node.exit().remove();
 
         return node;
     }

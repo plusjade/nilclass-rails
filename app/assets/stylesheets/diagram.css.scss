@@ -26,9 +26,6 @@ $alt-background-color: #FBF8F5;
 
   circle {
     cursor: pointer;
-    fill: #F4DD51;
-    stroke: #E6AC27;
-    stroke-width: 1.5px;
     &.focus {
       fill: #1c9edb;
       fill-opacity: 0.1;
@@ -93,6 +90,11 @@ path {
   }
   &.exchange {
     fill: #777;
+  }
+  &.software {
+    fill: #F4DD51;
+    stroke: #E6AC27;
+    stroke-width: 5px;
   }
 }
 .flow-icon {
