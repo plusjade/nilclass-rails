@@ -138,12 +138,21 @@ var Diagram = function(endpoint) {
                             }
                             return accumulator;
                           }, {});
+        var connections = steps.reduce(function(accumulator, step) {
+                            if(step.connections) {
+                                for(key in step.connections) {
+                                    accumulator[key] = step.connections[key];
+                                }
+                            }
+                            return accumulator;
+                          }, {});
 
         var items = JSON.parse(JSON.stringify(steps.shift().actions[0].items)),
             graph = new Graph(items),
             metadata = {};
 
         graph.positions = positions;
+        graph.connections = connections;
 
         // Note this process mutates the graph object in place.
         steps.reduce(function(accumulator, step) {

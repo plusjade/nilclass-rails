@@ -117,20 +117,6 @@ var Graph = function(items) {
         })
     }
 
-    // Get connections on an item.
-    // Connections represent the lines connecting one item to another.
-    this.connections = function(key) {
-        var connections = this.get(key).connect;
-        if (!connections) {
-            return [];
-        }
-        if (!Array.isArray(connections)) {
-            connections = [connections];
-        }
-
-        return connections;
-    }
-
     // Internal. Add more items to the graph's dictionary.
     this.addToDict = function(items) {
         var dict = dictify(items);

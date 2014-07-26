@@ -33,15 +33,15 @@ var Plot = function() {
     function diagonalConnectionLinks(graph) {
         var links = [];
 
-        for(key in graph.dict) {
-            graph.connections(key).forEach(function(id) {
-                if(graph.get(key) && graph.get(id)) {
+        for(key in graph.connections) {
+            if(graph.get(key)) {
+                graph.getAll(graph.connections[key]).forEach(function(item) {
                     links.push({
-                        source: graph.find(key),
-                        target: graph.find(id)
+                        source: graph.get(key),
+                        target: item
                     });
-                }
-            })
+                })
+            }
         }
 
         return links;
