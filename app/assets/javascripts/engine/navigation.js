@@ -61,15 +61,8 @@ var Navigation = function(selector) {
             Display.update(graph);
             current = graph.meta('index');
             highlight(current);
-            if (graph.meta('slug')) {
-                var url = window.location.pathname.split('/');
-                // (4 slots)
-                if (url.length === 4) {
-                    url.pop(); //   / course / course_id / step_name
-                }
-                url.push(graph.meta('slug'));
-                history.replaceState(null, null, url.join('/'));
-            }
+
+            window.location.replace("#" + (current +1)); 
         })
     }
 
