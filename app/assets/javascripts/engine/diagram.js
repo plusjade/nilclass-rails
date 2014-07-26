@@ -116,7 +116,7 @@ var Diagram = function(endpoint) {
     }
 
     function parseSteps(data) {
-        Steps = Expand(data.steps);
+        Steps = data.steps;
         Steps.forEach(function(step, i) {
             if(step.diagramStep) {
                 Urls[step.diagramStep] = i;
