@@ -131,6 +131,33 @@ var Style = {
     }
 
     ,
+    crossOut : function(nodes) {
+        var size = 30;
+        var nodesEnter = nodes.append('use')
+            .attr('xlink:href', '#cross-out')
+            .attr('class', 'cross-out')
+            .attr('x', -(size/2))
+            .attr('y', -(size/2))
+            .attr('height', size)
+            .attr('width', size)
+
+        nodes.exit()
+            .selectAll("use.cross-out").remove();
+
+        return nodes;
+    }
+
+    ,
+    disable : function(nodes) {
+        nodes.style('opacity', 0.7)
+
+        nodes.exit()
+            .style('opacity', 1);
+
+        return nodes;
+    }
+
+    ,
     pulsePath : function(nodes) {
         nodes
             .transition()

@@ -14,7 +14,7 @@ var Display = (function() {
 
         updateNodes(nodes);
 
-        var types = ['focus'];
+        var types = ['focus', 'crossOut', "disable"];
         var nodes = World.container.selectAll("g.node");
 
         types.forEach(function(type) {
