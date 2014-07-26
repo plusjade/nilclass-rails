@@ -18,11 +18,7 @@ var Style = {
     clicker : function(nodes) {
         nodes.append('circle')
             .attr('class', 'clicker')
-            .attr('r', 50)
-            .on('click', function(d) {
-                World.page.content(d.content || '');
-            })
-
+            .attr('r', 50);
         return nodes;
     }
     ,
