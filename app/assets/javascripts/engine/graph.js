@@ -66,6 +66,18 @@ var Graph = function(items) {
         }
     }
 
+    this.getAll = function(keys) {
+        var self = this;
+        var items = [];
+        coerceArray(keys).forEach(function(name) {
+            if(self.get(name)) {
+                items.push(self.get(name));
+            }
+        })
+
+        return items;
+    };
+
     this.findAll = function(keys) {
         var self = this;
 
