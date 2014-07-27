@@ -22,6 +22,23 @@ body.landing {
   }
   #banner {
     padding: 60px 20px 100px 20px;
+    background: $main-color;
+    /* IE10 Consumer Preview */
+    background-image: url('/images/landing-graphic.svg'), -ms-radial-gradient(right center, ellipse farthest-side, #58BBE9 0%, #1C9EDB 100%);
+    /* Mozilla Firefox */
+    background-image: url('/images/landing-graphic.svg'), -moz-radial-gradient(right center, ellipse farthest-side, #58BBE9 0%, #1C9EDB 100%);
+    /* Opera */
+    background-image: url('/images/landing-graphic.svg'), -o-radial-gradient(right center, ellipse farthest-side, #58BBE9 0%, #1C9EDB 100%);
+    /* Webkit (Safari/Chrome 10) */
+    background-image: url('/images/landing-graphic.svg'), -webkit-gradient(radial, right center, 0, right center, 954, color-stop(0, #58BBE9), color-stop(1, #1C9EDB));
+    /* Webkit (Chrome 11+) */
+    background-image: url('/images/landing-graphic.svg'), -webkit-radial-gradient(right center, ellipse farthest-side, #58BBE9 0%, #1C9EDB 100%);
+    /* W3C Markup, IE10 Release Preview */
+    background-image: url('/images/landing-graphic.svg'), radial-gradient(ellipse farthest-side at right center, #58BBE9 0%, #1C9EDB 100%);
+
+    background-repeat:no-repeat;
+    background-position-x: 150%;
+    background-position-y: center;
   }
   #heading {
     margin-bottom:60px;
@@ -29,7 +46,7 @@ body.landing {
     text-shadow: 2px 2px 0px $main-color-dark;
   }
   #tagline {
-    font-size: 1.2em;
+    font-size: 1.4em;
     margin-bottom: 60px;
     color:#FFF;
     text-shadow: 1px 1px 0px $main-color-dark;
@@ -66,22 +83,6 @@ body.landing {
         margin:auto;
       }
     }
-  }
-
-  .bg-colorize {
-    background: $main-color;
-    /* IE10 Consumer Preview */ 
-    background-image: -ms-radial-gradient(right center, ellipse farthest-side, #58BBE9 0%, #1C9EDB 100%);
-    /* Mozilla Firefox */ 
-    background-image: -moz-radial-gradient(right center, ellipse farthest-side, #58BBE9 0%, #1C9EDB 100%);
-    /* Opera */ 
-    background-image: -o-radial-gradient(right center, ellipse farthest-side, #58BBE9 0%, #1C9EDB 100%);
-    /* Webkit (Safari/Chrome 10) */ 
-    background-image: -webkit-gradient(radial, right center, 0, right center, 954, color-stop(0, #58BBE9), color-stop(1, #1C9EDB));
-    /* Webkit (Chrome 11+) */ 
-    background-image: -webkit-radial-gradient(right center, ellipse farthest-side, #58BBE9 0%, #1C9EDB 100%);
-    /* W3C Markup, IE10 Release Preview */ 
-    background-image: radial-gradient(ellipse farthest-side at right center, #58BBE9 0%, #1C9EDB 100%);
   }
 
   #mce-EMAIL {
@@ -176,6 +177,11 @@ and (max-width : 800px) {
         width:100%;
         height:auto;
       }
+    }
+
+    #banner {
+      background-position-x: 0;
+      background-position-y: center;
     }
   }
 }
