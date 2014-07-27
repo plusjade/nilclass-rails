@@ -4,4 +4,6 @@ Narly::Application.routes.draw do
       get ":step", action: :show
     end
   end
+
+  root to: 'courses#index'
 end

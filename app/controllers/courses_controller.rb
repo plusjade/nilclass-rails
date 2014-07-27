@@ -1,5 +1,6 @@
 class CoursesController < ApplicationController
   def index
+    render template: "courses/index", layout: "landing"
   end
 
   def show

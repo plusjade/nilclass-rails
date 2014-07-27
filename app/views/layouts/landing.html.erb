@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Interactive tutorials</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= stylesheet_link_tag "landing", :media => "all" %>
+    <link href='//fonts.googleapis.com/css?family=Nunito:300' rel='stylesheet' type='text/css'>
+    <style>
+      body {
+        font-family: 'Nunito', sans-serif;
+        font-weight: 300;
+        font-size:15px;
+        color: #424242;
+      }
+    </style>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <% if Rails.env.production? %>
+    <%= render partial: "layouts/heap" %>
+  <% end %>
+  </head>
+  <body class="landing">
+    <%= yield %>
+
+    <% if Rails.env.production? %>
+      <%= render partial: "layouts/clicky" %>
+    <% end %>
+  </body>
+</html>
